@@ -1,0 +1,1 @@
+import{R as a,j as o,P as r}from"./index-Cl-5BZAw.js";const n=a.memo(({products:t,showDiscount:c})=>o.jsx("ul",{className:"section_01__promotions",children:t.map(s=>o.jsx(r,{product:s,showDiscount:c?!!s.discount:!1},s.id))}));export{n as P};

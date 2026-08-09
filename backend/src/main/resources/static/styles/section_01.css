@@ -1,0 +1,428 @@
+:root {
+  --color-white:#FFFFFF;
+  --color-green:#46BB22;
+  --color-green-hover:#4ADC1C;
+  --color-dark:#2C2C2C;
+  --color-beige:#FAE390;
+  --color-black:#000000;
+  --color-red:#FF0000;
+  --border-radius:50px;
+  --border:2px solid var(--color-white);
+  --font-family-roboto:"Roboto", sans-serif;
+  --section-padding-y:50px;
+}
+
+.section_01 {
+  width: 100%;
+  height: auto;
+  padding: 0 0 50px 0;
+  margin: 0 auto;
+  background: url("../assets/images/bg_fon1.jpg") repeat;
+}
+.section_01 h2 {
+  color: var(--color-green);
+  margin: 0 0 20px 0;
+  text-align: center;
+}
+.section_01__promotions {
+  width: 100%;
+  height: auto;
+  padding: 0;
+  margin: auto;
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.section_01__promotions h2 {
+  margin-bottom: 0px;
+  line-height: 5.4rem !important;
+}
+.section_01__promotions p {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-dark);
+  line-height: 21px;
+}
+.section_01__promotions-item {
+  width: 270px;
+  padding: 30px;
+  background: var(--color-white);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
+  box-sizing: border-box;
+}
+.section_01__promotions-item a {
+  text-decoration: none;
+  text-align: center;
+}
+.section_01__promotions-item img {
+  margin-bottom: 30px;
+}
+.section_01__promotions-item p {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-dark);
+  line-height: 21px;
+  width: 100%;
+  text-align: center;
+}
+.section_01__promotions-item .extra {
+  font-size: 30px;
+  font-weight: 500;
+}
+.section_01__promotions-item .offer {
+  font-size: 14px;
+  font-weight: 300;
+  text-decoration: line-through;
+  margin: 10px 0;
+}
+.section_01__promotions-item .offer .percent {
+  display: inline-block;
+  background: var(--color-green);
+  margin: 0 10px;
+  border-radius: 20px;
+  color: var(--color-white);
+  padding: 5px;
+  font-weight: 600;
+}
+.section_01__promotions-item-button {
+  width: auto;
+  height: auto;
+  padding: auto;
+  margin: 0 auto;
+  background: var(--color-green) 10% 50% no-repeat;
+  border: 0;
+  font-size: 12px;
+  font-weight: 600;
+}
+.section_01__promotions-item-button:hover {
+  width: auto;
+  height: auto;
+  padding: auto;
+  margin: 0 auto;
+  background: var(--color-green-hover) 10% 50% no-repeat;
+}
+.section_01__promotions-item .amount {
+  margin: 10px 0;
+}
+.section_01__promotions-item .amount-input {
+  width: 30px;
+  height: 20px;
+  border-radius: 0px;
+  background: #f5f5f5;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin: 0 10px;
+  color: var(--color-dark);
+  text-align: center;
+  font-size: 12px;
+  padding: 0;
+}
+.section_01__promotions-item .amount-input::-webkit-outer-spin-button, .section_01__promotions-item .amount-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.section_01__promotions-item .amount button {
+  width: 20px;
+  height: 20px;
+  background: none;
+  border: 0;
+  border-radius: 20px;
+  color: var(--color-green);
+  font-size: 18px;
+  font-weight: 600;
+}
+.section_01__shopping-cart-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 30px;
+  box-sizing: border-box;
+}
+.section_01__shopping-cart-container .status {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--color-black);
+  line-height: 21px;
+}
+.section_01__shopping-cart-container .cart-item-container {
+  width: 100%;
+  height: auto;
+  padding: auto;
+  margin: 0 auto;
+  background: none;
+  max-width: 1170px;
+  box-sizing: border-box;
+}
+.section_01__shopping-cart-container .cart-item-container .cart-order-product {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--color-black);
+  line-height: 21px;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 20px;
+  align-items: center;
+  justify-items: center;
+  width: auto;
+  align-self: center;
+  padding: 10px;
+  margin: 10px auto;
+  background: var(--color-white);
+}
+.section_01__shopping-cart-container .cart-item-container img {
+  width: 50px;
+  height: auto;
+}
+.section_01__shopping-cart-container .cart-item-container .cart-close img {
+  width: 20px;
+}
+.section_01__shopping-cart-container .cart-item-container .cart-close {
+  cursor: pointer;
+  background: none;
+  border: 0;
+}
+.section_01__shopping-cart-container .total_order_price {
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  margin: 0 auto 50px auto;
+  background: var(--color-green);
+  max-width: 1170px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  border: 0;
+}
+.section_01__shopping-cart-container .total_order_price p,
+.section_01__shopping-cart-container .total_order_price h3 {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--color-white) !important;
+  line-height: 30px;
+}
+.section_01__shopping-cart-container .order_delivery {
+  width: 100%;
+  height: auto;
+  padding: 30px;
+  margin: 10px auto 10px auto;
+  background: var(--color-white);
+  box-sizing: border-box;
+  max-width: 1170px;
+  /* The container */
+  /* Hide the browser's default radio button */
+  /* Create a custom radio button */
+  /* On mouse-over, add a grey background color */
+  /* When the radio button is checked, add a blue background */
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  /* Show the indicator (dot/circle) when checked */
+}
+.section_01__shopping-cart-container .order_delivery .map-container {
+  margin-top: 20px;
+}
+.section_01__shopping-cart-container .order_delivery__text {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--color-black) !important;
+  line-height: 21px;
+}
+.section_01__shopping-cart-container .order_delivery .radio_group {
+  display: flex;
+  justify-content: left;
+  gap: 30px;
+}
+.section_01__shopping-cart-container .order_delivery .container {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.section_01__shopping-cart-container .order_delivery .container input {
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+}
+.section_01__shopping-cart-container .order_delivery .checkmark {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-dark);
+  line-height: 18px;
+  background: #eee url("../../images/svg/truck_dark.svg") 20px 50% no-repeat;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 30px 15px 60px;
+  border-radius: 50px;
+}
+.section_01__shopping-cart-container .order_delivery .container:hover input ~ .checkmark {
+  background-color: #ccc;
+  transition: 1s;
+}
+.section_01__shopping-cart-container .order_delivery .container input:checked ~ .checkmark {
+  color: var(--color-white);
+  background: var(--color-green) url("../../images/svg/truck_light.svg") 20px 50% no-repeat;
+  transition: 0.3s;
+}
+.section_01__shopping-cart-container .order_delivery .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.section_01__shopping-cart-container .order_delivery .container input:checked ~ .checkmark:after {
+  display: block;
+}
+.section_01__shopping-cart-container .order_info {
+  width: 100%;
+  height: auto;
+  padding: 30px;
+  margin: 10px auto;
+  background: var(--color-white);
+  box-sizing: border-box;
+  max-width: 1170px;
+}
+.section_01__shopping-cart-container .order_payment {
+  width: 100%;
+  height: auto;
+  padding: 30px;
+  margin: 10px auto 10px auto;
+  background: var(--color-white);
+  box-sizing: border-box;
+  max-width: 1170px;
+}
+.section_01 .go-back {
+  border: 0;
+  padding: 10px 20px;
+  background: var(--color-green);
+  color: var(--color-white);
+  border-radius: 30px;
+  margin-left: 30px;
+  order: 1;
+  text-decoration: none;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--color-white);
+  line-height: 21px;
+}
+.section_01__header_container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1170px;
+  align-items: center;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+.section_01 .order_info form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.section_01 .order_info form input {
+  border-radius: 0;
+  border-color: rgba(0, 0, 0, 0.1);
+  height: 30px;
+  padding: 5px 10px;
+  margin: 0;
+  text-transform: none;
+  font-weight: 200;
+  font-size: 12px;
+  font-weight: 100;
+  color: var(--color-dark);
+  line-height: 18px;
+  background: var(--color-white);
+}
+.section_01 .order_info form textarea {
+  padding: 5px 10px;
+  border-color: rgba(0, 0, 0, 0.1);
+  min-height: 80px;
+  background: var(--color-white);
+  font-size: 12px;
+  font-weight: 100;
+  color: var(--color-dark);
+  line-height: 18px;
+  text-transform: none;
+  font-weight: 200;
+}
+.section_01 .order_info form label {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-dark);
+  line-height: 24px;
+}
+.section_01 .order_payment {
+  /* The container */
+  /* Hide the browser's default radio button */
+  /* Create a custom radio button */
+  /* On mouse-over, add a grey background color */
+  /* When the radio button is checked, add a blue background */
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  /* Show the indicator (dot/circle) when checked */
+  /* Style the indicator (dot/circle) */
+}
+.section_01 .order_payment__container {
+  margin: 20px 0;
+}
+.section_01 .order_payment .wrapper {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--color-dark);
+  line-height: 24px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.section_01 .order_payment .wrapper input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+.section_01 .order_payment .checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+.section_01 .order_payment .wrapper:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+.section_01 .order_payment .wrapper input:checked ~ .checkmark {
+  background-color: var(--color-green);
+}
+.section_01 .order_payment .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.section_01 .order_payment .wrapper input:checked ~ .checkmark:after {
+  display: block;
+}
+.section_01 .order_payment .wrapper .checkmark:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+
+/*# sourceMappingURL=section_01.css.map */

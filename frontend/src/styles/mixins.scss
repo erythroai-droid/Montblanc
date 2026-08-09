@@ -1,0 +1,27 @@
+@use './variables' as *;
+
+
+@mixin font-face($font-size-regular, $font-weight, $font-color){
+	font-size: $font-size-regular;
+	font-weight: $font-weight;
+	color: $font-color;
+	line-height:  lineHeight($font-size-regular);
+}
+
+@mixin block-set($width, $height, $padding, $margin, $background){
+	width:$width;
+	height: $height;
+	padding: $padding;
+	margin: $margin;
+	background: $background;
+}
+
+@function lineHeight($size){
+	$result:$size*1.5;
+	@return $result; 
+}
+
+@function colums($value){
+	$result: $value * 70 + (($value - 1) * 30 * 1px);
+	@return $result; 
+}

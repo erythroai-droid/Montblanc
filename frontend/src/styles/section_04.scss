@@ -1,0 +1,56 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+
+.section_04 {
+	@include block-set(100%, 100px, 0, 0 auto, var(--color-green));
+	display: flex;
+	justify-content: center;
+
+	&__container {
+		display: flex;
+		width: 1170px;
+		justify-content: space-between;
+		gap: 50px;
+		height: 100%;
+		align-items: center;
+		@include font-face($font-size-regular * 1px, 400, var(--color-white));
+		text-transform: uppercase;
+	}
+
+	&__container.phone {
+//		background: url("../../images/svg/phone_small.svg") 0 50% no-repeat;
+		padding-left: 40px;
+		justify-content: flex-start;
+		gap: 20px;
+	}
+
+	&__container.email {
+//		background: url("../../images/svg/email_small.svg") 0 50% no-repeat;
+		padding-left: 40px;
+		justify-content: flex-start;
+		gap: 20px;
+	}
+
+	&__container.support {
+//		background: url("../../images/svg/support_small.svg") 0 50% no-repeat;
+		padding-left: 40px;
+		justify-content: flex-start;
+		gap: 20px;
+	}
+	&__container.icons {
+		align-items: center;
+		justify-content: flex-start;
+		gap: 20px;
+
+		p{
+			margin-bottom: 5px;
+		}
+	}
+
+	span.black {
+		color: var(--color-dark);
+		font-weight: 600;
+		margin-right: 5px;
+	}
+}

@@ -1,0 +1,43 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.footer {
+	@include block-set(100%, auto, 50px 0, 0 auto, var(--color-dark));
+	display: flex;
+	justify-content: center;
+	color: var(--color-white);
+
+	&__container {
+		width: 1170px;
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: 1fr;
+		grid-column-gap: 30px;
+		grid-row-gap: 0px;
+	}
+
+	&__container .tel {
+		@include font-face($font-size-header-third * 1px, 500, var(--color-white));
+		margin-top: 20px;
+	}
+
+	&__container .time {
+		@include font-face($font-size-header-fifth * 1px, 300, var(--color-beige));
+	}
+
+	&__container a {
+		@include font-face($font-size-regular * 1px, 300, var(--color-white));
+		text-transform: none;
+		text-decoration: none;
+		margin: 5px 0;
+		display: inline-flex;
+	}
+
+	&__container a:hover {
+		color: var(--color-beige);
+	}
+
+	&__container h5 {
+		margin-bottom: 10px;
+	}
+}

@@ -1,0 +1,181 @@
+// src/styles/media.scss
+@use './variables' as *;
+
+@media (max-width: $width-desktop) {
+  /* Ваши стили */
+  .section_catalog__container_product, .section_catalog__container{
+    margin: 0 20px;
+  }
+}
+// Scss Document
+@media (max-width: $width-desktop) {
+
+  html {
+    font-size: 50%;
+  }
+  .header__inner {
+    gap: 20px;
+  }
+  .header__contact.phone, .header__contact.time {
+    display: none !important;
+  }
+  .section_03__info {
+    width: auto !important;
+    flex-wrap: wrap;
+  }
+  .section_04 {
+    display: none !important;
+  }
+  .footer__container {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-rows: repeat(2, 1fr) !important;
+    gap: 30px !important;
+    margin: 0 50px !important;
+  }
+  .section_02__banner.container .text {
+    font-size: 2rem !important;
+  }
+  .section_03 {
+    background: #f6f6f6 url("/images/bg_fon_2.png") 0 100% no-repeat !important;
+  }
+}
+
+@media (max-width: $width-mobile-until) {
+  .header {
+    height: auto !important;
+    padding: 30px 0 !important;
+  }
+  .header__inner {
+    flex-direction: column;
+  }
+  .nav__menu {
+    gap: 10px !important;
+  }
+  .section_01 {
+    padding: 30px 0!important;
+
+  }
+  .section_02__banner.container {
+    flex-wrap: wrap !important;
+  }
+  .section_02__banner.container .text {
+    width: auto !important;
+    line-height: normal!important;
+  }
+
+  .section_02__banner.container .inner_left {
+    justify-content: right !important;
+    margin-right: 0 !important;
+  }
+  .padding_right_50 {
+    padding-right: 10px !important;
+  }
+
+  .section_02__banner.container .inner_right {
+    justify-content: left !important;
+    margin-left: 0 !important;
+  }
+  .padding_left_50 {
+    padding-left: 10px !important;
+  }
+
+  .footer__container {
+    display: grid !important;
+    grid-template-columns: repeat(1, 1fr) !important;
+    grid-template-rows: repeat(1, 1fr) !important;
+    gap: 30px !important;
+    margin: 0 50px !important;
+  }
+  .header__cart_container {
+    display: flex  ;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+
+  }
+  .header__cart {
+    position: relative;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+  }
+
+  .header__drop-cart {
+    left: 0 !important;
+    right: 0 !important;
+    min-width: auto !important;
+    margin-top: -15px!important;
+
+  }
+  .header__drop-cart-container {
+    position: inherit !important;
+  }
+
+  .slider__arrow_right {
+
+    margin: 430px 30px 0 0 !important;
+  }
+  .slider__arrow_left {
+
+    margin: 430px 0 0 30px !important;
+  }
+  .slider__items-inner .description {
+    margin: 0 30px !important;
+  }
+  .section_01__shopping-cart-container .order_delivery .radio_group{
+    gap: 0!important;
+    flex-direction: column!important;
+    max-width: 270px!important;
+  }
+  .header__menu.services ul{
+    display: flex;
+    flex-wrap: wrap; /* Позволяет элементам переноситься на новую строку */
+    justify-content: center!important; /* Горизонтальное центрирование элементов */
+    align-items: center!important; /* Вертикальное центрирование элементов */
+  }
+  .header__menu.services ul li:first-child {
+    flex: 0 0 100%;
+//    margin-bottom: 20px;
+    text-align: center;
+    justify-content: center!important; /* Горизонтальное центрирование элементов */
+    align-items: center!important; /* Вертикальное центрирование элементов */
+  }
+  .header__menu.services ul li:not(:first-child){
+    gap: 10px;
+  }
+  .section_catalog .container_top{
+    flex-direction: column;
+    align-items: center;
+  }
+  .section_catalog .container_bottom{
+    flex-direction: column;
+  }
+  .section_catalog__container_product{
+    margin: 0 20px;
+  }
+  .section_catalog .container_top .foto {
+    max-width: 250px;
+  }
+  .breadcrumbs-list{
+    flex-wrap: wrap;
+    row-gap: 10px;
+  }
+  .section_catalog__container{
+    flex-direction: column;
+    align-items: center;
+  }
+  .section_catalog__container .right_sidebar .section_01__promotions{
+    justify-content: center!important;
+  }
+  .section_catalog__container .right_sidebar h2{
+    text-align: center;
+  }
+  .section_catalog__container .top_sidebar{
+    display: block!important;
+  }
+  .section_catalog__container .left_sidebar{
+    display: none!important;
+  }
+}

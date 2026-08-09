@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  mariadb:
+    image: mariadb:10.11
+    container_name: montblanc_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-rootpass123}
+      MYSQL_DATABASE: ${DB_NAME:-montblanc_db}
+      MYSQL_USER: ${DB_USER:-admin}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-12345}
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "127.0.0.1:3306:3306"
+    networks:
+      - montblanc-net
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: montblanc_api
+    restart: always
+    depends_on:
+      - mariadb
+    environment:
+      DB_URL: jdbc:mariadb://mariadb:3306/${DB_NAME:-montblanc_db}?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+      DB_USER: ${DB_USER:-admin}
+      DB_PASSWORD: ${DB_PASSWORD:-12345}
+      APP_BASE_URL: ${APP_BASE_URL:-https://pizza-na-dom.mk.ua}
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-http://localhost:3000,https://pizza-na-dom.mk.ua}
+      MAIL_HOST: ${MAIL_HOST:-smtp.gmail.com}
+      MAIL_PORT: ${MAIL_PORT:-587}
+      MAIL_USERNAME: ${MAIL_USERNAME:-webmechanik@gmail.com}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:-rdsqgtepruwarudc}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID:-}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET:-}
+      TWITTER_CLIENT_ID: ${TWITTER_CLIENT_ID:-}
+      TWITTER_CLIENT_SECRET: ${TWITTER_CLIENT_SECRET:-}
+      SERVER_PORT: 8080
+    ports:
+      - "127.0.0.1:8080:8080"
+    networks:
+      - montblanc-net
+
+volumes:
+  db_data:
+
+networks:
+  montblanc-net:
+    driver: bridge

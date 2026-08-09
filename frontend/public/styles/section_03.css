@@ -1,0 +1,56 @@
+:root {
+  --color-white:#FFFFFF;
+  --color-green:#46BB22;
+  --color-green-hover:#4ADC1C;
+  --color-dark:#2C2C2C;
+  --color-beige:#FAE390;
+  --color-black:#000000;
+  --color-red:#FF0000;
+  --border-radius:50px;
+  --border:2px solid var(--color-white);
+  --font-family-roboto:"Roboto", sans-serif;
+  --section-padding-y:50px;
+}
+
+.section_03 {
+  width: 100%;
+  height: auto;
+  padding: 50px 0 50px 0;
+  margin: 0 auto;
+  background: url("../assets/images/bg_fon_2.png") 0 100% no-repeat;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--color-dark);
+  line-height: 21px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.section_03 h2 {
+  margin: 0 0 30px 0;
+  text-align: center;
+}
+.section_03__info {
+  width: auto;
+  height: auto;
+  padding: 0;
+  margin: 0 30px;
+  background: none;
+  width: 1170px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+.section_03__info h3 {
+  margin: 0;
+}
+.section_03__info .sub_text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-green);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+/*# sourceMappingURL=section_03.css.map */

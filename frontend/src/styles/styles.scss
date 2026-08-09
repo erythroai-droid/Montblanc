@@ -1,0 +1,14 @@
+@use './normalize' as *;
+@use 'header' as *;
+@use 'nav' as *;
+@use "./slider" as *;
+@use "./section_01" as *;
+@use "./section_02" as *;
+@use "./section_03" as *;
+@use "./section_04" as *;
+@use "./section_catalog.scss" as *;
+@use "./product" as *;
+@use "./footer" as *;
+@use './global' as *;
+@use './media' as *;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");

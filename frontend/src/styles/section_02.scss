@@ -1,0 +1,39 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.section_02 {
+	@include block-set(100%, auto, 0, 0 auto, var(--color-green));
+
+	&__banner.container {
+		display: flex;
+		justify-content: center;
+		flex-wrap: nowrap;
+	}
+
+	&__banner.container img {
+		width: 100%;
+		height: auto;
+	}
+
+	&__banner.container .inner_left {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: right;
+	}
+
+	&__banner.container .inner_right {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: left;
+	}
+
+	&__banner.container .text {
+		position: absolute;
+		width: 50%;
+		@include font-face(3rem, 600, var(--color-white));
+		box-sizing: border-box;
+		text-transform: uppercase;
+	}
+}

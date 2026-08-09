@@ -1,0 +1,15 @@
+[Unit]
+Description=Montblanc Spring Boot REST API Service
+After=network.target mariadb.service
+
+[Service]
+User=root
+WorkingDirectory=/var/www/montblanc-backend
+ExecStart=/usr/bin/java -Xms256m -Xmx512m -XX:+UseG1GC -jar montblanc-0.0.1-SNAPSHOT.jar
+EnvironmentFile=/var/www/montblanc-backend/.env
+SuccessExitStatus=143
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

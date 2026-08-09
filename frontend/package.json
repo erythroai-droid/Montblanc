@@ -1,0 +1,31 @@
+{
+  "name": "montblanc-next-app",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@react-google-maps/api": "^2.20.7",
+    "@reduxjs/toolkit": "^2.8.2",
+    "axios": "^1.10.0",
+    "flag-icons": "^7.5.0",
+    "next": "^15.1.7",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-intl": "^7.1.11",
+    "react-redux": "^9.2.0",
+    "react-slick": "^0.30.3",
+    "sass": "^1.85.0",
+    "slick-carousel": "^1.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.1",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0"
+  }
+}

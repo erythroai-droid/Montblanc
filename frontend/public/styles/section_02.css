@@ -1,0 +1,54 @@
+:root {
+  --color-white:#FFFFFF;
+  --color-green:#46BB22;
+  --color-green-hover:#4ADC1C;
+  --color-dark:#2C2C2C;
+  --color-beige:#FAE390;
+  --color-black:#000000;
+  --color-red:#FF0000;
+  --border-radius:50px;
+  --border:2px solid var(--color-white);
+  --font-family-roboto:"Roboto", sans-serif;
+  --section-padding-y:50px;
+}
+
+.section_02 {
+  width: 100%;
+  height: auto;
+  padding: 0;
+  margin: 0 auto;
+  background: var(--color-green);
+}
+.section_02__banner.container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+.section_02__banner.container img {
+  width: 100%;
+  height: auto;
+}
+.section_02__banner.container .inner_left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: right;
+}
+.section_02__banner.container .inner_right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+}
+.section_02__banner.container .text {
+  position: absolute;
+  width: 50%;
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--color-white);
+  line-height: 4.5rem;
+  box-sizing: border-box;
+  text-transform: uppercase;
+}
+
+/*# sourceMappingURL=section_02.css.map */

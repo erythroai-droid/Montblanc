@@ -1,0 +1,178 @@
+@use 'sass:math';
+@use './variables' as *;
+@use './mixins' as *;
+html {
+  font-size: 62.5%;
+}
+
+
+body {
+  font-family: var(--font-family-roboto);
+  @include font-face(math.div($font-size-regular, 10) * 1px, 300, var(--color-dark));
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+}
+
+#root {
+  width: 100%;
+  height: 100vh;
+}
+.button,
+input {
+  border-radius: #{$border-radius-button}px;
+//  height: #{$height-button}px;
+  height: auto;
+  padding: #{$padding-button} ;
+  text-decoration: none;
+  @include font-face($font-size-regular * 1px, 400, var(--color-white));
+  text-transform: uppercase;
+}
+
+
+h1 {
+  @include font-face(math.div($font-size-header-first, 10) * 1rem, 900, var(--color-dark));
+  text-transform: uppercase;
+}
+
+h2 {
+  @include font-face(math.div($font-size-header-second, 10) * 1rem, 700, var(--color-dark));
+  text-transform: uppercase;
+}
+
+h3 {
+  @include font-face(math.div($font-size-header-third, 10) * 1rem, 700, var(--color-dark));
+  text-transform: uppercase;
+}
+
+h4 {
+  @include font-face(math.div($font-size-header-fourth, 10) * 1rem, 500, var(--color-dark));
+  text-transform: uppercase;
+}
+
+h5 {
+  @include font-face(math.div($font-size-header-fifth, 10) * 1rem, 500, var(--color-beige));
+  text-transform: uppercase;
+}
+
+a:hover, a:not(:hover), a:hover::after, a:not(:hover)::after, .section_01__promotions-item:hover, .section_01__promotions-item:not(:hover), .section_01__promotions-item-button:hover, .section_01__promotions-item-button:not(:hover) {
+  transition: .5s;
+}
+
+.padding_right_50 {
+  padding-right: 50px;
+}
+
+.padding_left_50 {
+  padding-left: 50px;
+}
+.padding-top_50{
+  padding-top: 50px;
+}
+
+.flex {
+  display: flex !important;
+}
+
+.hide {
+  display: none;
+}
+
+.red{
+  color:#ff0000;
+}
+
+.breadcrumbs {
+  padding: 20px 20px;
+  background: #F6F6F6;
+  display: flex;
+  justify-content: center;
+}
+
+.breadcrumbs-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  width: 1170px;
+  display: flex;
+  gap: 5px;
+}
+
+.breadcrumbs-list.rtl {
+  direction: rtl;
+}
+
+.breadcrumbs-item {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  gap: 5px;
+}
+
+.breadcrumbs-link {
+  color: var(--color-dark);
+  text-decoration: none;
+}
+
+.breadcrumbs-link:hover {
+
+  color: var(--color-green);
+}
+
+.breadcrumbs-current {
+  @include font-face($font-size-regular * 1px, 400, var(--color-green));
+}
+
+.breadcrumbs-separator {
+  margin: 0 8px;
+  color: #666;
+}
+.loaderArea {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: all 0.5s ease;
+  opacity: 1;
+}
+
+.loaderArea.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.preloader-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #46BB22;
+  animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.pre_logo {
+  position: relative;
+  z-index: 1;
+  max-width: 300px;
+  opacity: 0;
+  animation: logoFadeIn 1s ease forwards;
+  animation-delay: 0.5s; /* Delay to sync with background fade */
+}
+
+@keyframes logoFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

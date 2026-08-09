@@ -1,0 +1,63 @@
+:root {
+  --color-white:#FFFFFF;
+  --color-green:#46BB22;
+  --color-green-hover:#4ADC1C;
+  --color-dark:#2C2C2C;
+  --color-beige:#FAE390;
+  --color-black:#000000;
+  --color-red:#FF0000;
+  --border-radius:50px;
+  --border:2px solid var(--color-white);
+  --font-family-roboto:"Roboto", sans-serif;
+  --section-padding-y:50px;
+}
+
+.footer {
+  width: 100%;
+  height: auto;
+  padding: 50px 0;
+  margin: 0 auto;
+  background: var(--color-dark);
+  display: flex;
+  justify-content: center;
+  color: var(--color-white);
+}
+.footer__container {
+  width: 1170px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 30px;
+  grid-row-gap: 0px;
+}
+.footer__container .tel {
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--color-white);
+  line-height: 36px;
+  margin-top: 20px;
+}
+.footer__container .time {
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--color-beige);
+  line-height: 24px;
+}
+.footer__container a {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--color-white);
+  line-height: 21px;
+  text-transform: none;
+  text-decoration: none;
+  margin: 5px 0;
+  display: inline-flex;
+}
+.footer__container a:hover {
+  color: var(--color-beige);
+}
+.footer__container h5 {
+  margin-bottom: 10px;
+}
+
+/*# sourceMappingURL=footer.css.map */
