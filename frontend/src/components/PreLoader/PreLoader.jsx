@@ -1,28 +1,28 @@
-// src/components/Preloader/Preloader.jsx
+"use client";
+
 import React, { useEffect, useState } from 'react';
-import Logo from '../../assets/images/Logo.png'; // Убедитесь, что путь к логотипу правильный
+import Logo from '../../assets/images/Logo.png';
+import styles from "./PreLoader.module.scss";
 
 const Preloader = () => {
 	const [isVisible, setIsVisible] = useState(true);
 
 	useEffect(() => {
-		// Устанавливаем таймер для скрытия прелоадера через 2 секунды
 		const timer = setTimeout(() => {
 			setIsVisible(false);
 		}, 3000);
 
-		// Очищаем таймер при размонтировании компонента
 		return () => clearTimeout(timer);
 	}, []);
 
 	return (
-		<div className={`loaderArea ${isVisible ? '' : 'hide'}`}>
-			<div className="preloader-bg"></div>
+		<div className={`${styles.loaderArea} ${isVisible ? '' : styles.hide}`}>
+			<div className={styles.preloaderBg}></div>
 			<img
-				src={Logo}
+				src={typeof Logo === 'string' ? Logo : (Logo?.src || Logo)}
 				height="84"
 				width="250"
-				className="pre_logo"
+				className={styles.preLogo}
 				alt="Preloader Logo"
 			/>
 		</div>

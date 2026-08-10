@@ -1,42 +1,16 @@
-	// Scss Document
-$width-desktop:1280px;
+// SCSS Variables
+$width-desktop: 1280px;
+$width-tablet: 1024px;
+$width-tablet-until: 1023px;
+$width-mobile: 768px;
+$width-mobile-until: 767px;
 
-$width-tablet:1024px;
-$width-tablet-until:1023px;
-
-$width-mobile:768px;
-$width-mobile-until:767px;
-
-
-
-$font-size-regular:14;
-$font-size-header-first:60;
-$font-size-header-second:48;
-$font-size-header-third:24;
-$font-size-header-fourth:20;
-$font-size-header-fifth:16;
-$border-radius-button:40;
-$height-button:44;
-$padding-button:10px 20px;
-
-:root{
-	--color-white:#FFFFFF;
-	--color-green:#46BB22;
-	--color-green-hover:#4ADC1C;
-	--color-dark:#2C2C2C;
-	--color-beige:#FAE390;
-	--color-black:#000000;
-	--color-red:#FF0000;
-
-	
-	--border-radius:50px;
-	--border:2px solid var(--color-white);
-	
-	--font-family-roboto:"Roboto", sans-serif;
-	--section-padding-y:50px;
-	
-}
-
-
-
-
+$font-size-regular: 14;
+$font-size-header-first: 60;
+$font-size-header-second: 48;
+$font-size-header-third: 24;
+$font-size-header-fourth: 20;
+$font-size-header-fifth: 16;
+$border-radius-button: 40;
+$height-button: 44;
+$padding-button: 10px 20px;

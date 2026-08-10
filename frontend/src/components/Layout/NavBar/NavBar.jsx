@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useIntl } from "react-intl";
 import { selectCategories } from "../../../redux/slices/categoriesSlice/categoriesSelectors.js";
 import { useSelector } from "react-redux";
+import styles from "./NavBar.module.scss";
 
 const NavBar = () => {
 	const intl = useIntl();
@@ -14,18 +15,18 @@ const NavBar = () => {
 		: "farm-gastronomy";
 
 	return (
-		<nav className="nav">
-			<ul className="nav__menu">
-				<Link href={`/catalog/${firstCategorySlug}`} className="nav__menu-item">
+		<nav className={styles.nav}>
+			<ul className={styles.menu}>
+				<Link href={`/catalog/${firstCategorySlug}`} className={styles.menuItem}>
 					{intl.formatMessage({ id: "catalog" })}
 				</Link>
-				<Link href="/all-offers" className="nav__menu-item">
+				<Link href="/all-offers" className={styles.menuItem}>
 					{intl.formatMessage({ id: "allOffers" })}
 				</Link>
-				<Link href="/delivery" className="nav__menu-item">
+				<Link href="/delivery" className={styles.menuItem}>
 					{intl.formatMessage({ id: "delivery" })}
 				</Link>
-				<Link href="/contacts" className="nav__menu-item">
+				<Link href="/contacts" className={styles.menuItem}>
 					{intl.formatMessage({ id: "contacts" })}
 				</Link>
 			</ul>

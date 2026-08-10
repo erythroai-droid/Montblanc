@@ -19,6 +19,7 @@ import ModalOverlay from "../../ModalOverlay/ModalOverlay.jsx";
 import { useIntl } from "react-intl";
 import FlagRu from "../../../icons/FlagRu/FlagRu.jsx";
 import FlagEn from "../../../icons/FlagEn/FlagEn.jsx";
+import styles from "./Header.module.scss";
 
 const iconStyle = {
 	width: "20px",
@@ -50,25 +51,25 @@ const Header = () => {
 	};
 
 	return (
-		<header className="header">
-			<div className="header__inner">
+		<header className={styles.header}>
+			<div className={styles.inner}>
 				<Link
 					href="/"
-					className="header__logo logo"
+					className={styles.logo}
 				>
 					<img
-						className="logo__image"
+						className={styles.logoImage}
 						src={typeof Logo === 'string' ? Logo : (Logo?.src || Logo)}
-						alt="Mont Blank"
+						alt="Mont Blanc"
 						width="250"
 						height="84"
 					/>
 				</Link>
-				<div className="header__menu services">
+				<div className={styles.menu}>
 					<ul>
 						<li>
 							<button
-								className="header__button button"
+								className={styles.headerButton}
 								onClick={handleOpenOverlay}
 							>
 								{intl.formatMessage({ id: "sign_in" })}
@@ -82,46 +83,43 @@ const Header = () => {
 						</li>
 
 						<li
-							className={`header__menu-item ${locale === "en" ? "active" : ""}`}
+							className={`${styles.menuItem} ${locale === "en" ? styles.active : ""}`}
 							onClick={() => setLocale("en")}
-							style={{ cursor: "pointer" }}
 						>
 							<FlagEn />
 						</li>
 						<li
-							className={`header__menu-item ${locale === "ru" ? "active" : ""}`}
+							className={`${styles.menuItem} ${locale === "ru" ? styles.active : ""}`}
 							onClick={() => setLocale("ru")}
-							style={{ cursor: "pointer" }}
 						>
 							<FlagRu />
 						</li>
-
 					</ul>
 				</div>
-				<div className="header__contact phone">
+				<div className={styles.contact}>
 					<PhoneIcon {...iconStyle} />
 					<div>
-						<p className="tel">050 145-28-41</p>
-						<p className="time">{intl.formatMessage({ id: "support" })} 0800 574 54 44</p>
+						<p className={styles.tel}>050 145-28-41</p>
+						<p className={styles.time}>{intl.formatMessage({ id: "support" })} 0800 574 54 44</p>
 					</div>
 				</div>
-				<div className="header__contact time">
+				<div className={styles.contact}>
 					<ClockIcon {...iconStyle} />
 					<div>
-						<p className="tel">{intl.formatMessage({ id: "store_open" })}</p>
-						<p className="time">{intl.formatMessage({ id: "daily_from" })} 8.00 to 21.00</p>
+						<p className={styles.tel}>{intl.formatMessage({ id: "store_open" })}</p>
+						<p className={styles.time}>{intl.formatMessage({ id: "daily_from" })} 8.00 to 21.00</p>
 					</div>
 				</div>
-				<div className="header__cart_container">
-					<div className="header__cart">
+				<div className={styles.cartContainer}>
+					<div className={styles.cart}>
 						<button
-							className="header__button button cart"
+							className={styles.cartButton}
 							onClick={() => dispatch(toggleCartModal())}
 						>
 							<CartIcon {...cartStyle} />
 							<p>{intl.formatMessage({ id: "cart" })}</p>
 							<p
-								className="amount-items-null"
+								className={styles.amountBadge}
 								data-amount
 							>
 								{cartItems.length}

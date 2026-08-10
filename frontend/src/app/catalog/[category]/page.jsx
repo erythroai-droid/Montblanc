@@ -23,9 +23,5 @@ export async function generateMetadata({ params }) {
 }
 
 export default function CategoryPage() {
-  return (
-    <section className="section_catalog">
-      <CategoryContainer />
-    </section>
-  );
+  return <CategoryContainer />;
 }

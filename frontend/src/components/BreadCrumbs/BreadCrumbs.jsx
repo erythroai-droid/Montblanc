@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import styles from "./BreadCrumbs.module.scss";
 
 const BreadCrumbs = () => {
 	const pathname = usePathname() || '';
@@ -33,14 +34,14 @@ const BreadCrumbs = () => {
 	}
 
 	return (
-		<nav className="breadcrumbs">
-			<ul className="breadcrumbs-list">
+		<nav className={styles.breadcrumbs}>
+			<ul className={styles.list}>
 				{/* Всегда отображаем "Home" с разделителем */}
-				<li className="breadcrumbs-item">
-					<Link className="breadcrumbs-link" href="/">
+				<li className={styles.item}>
+					<Link className={styles.link} href="/">
 						Home
 					</Link>
-					{filteredPathnames.length > 0 && <span className="breadcrumbs-separator"> → </span>}
+					{filteredPathnames.length > 0 && <span className={styles.separator}> → </span>}
 				</li>
 
 				{filteredPathnames.map((value, index) => {
@@ -51,15 +52,15 @@ const BreadCrumbs = () => {
 					const formattedLabel = formatLabel(value);
 
 					return (
-						<li key={to} className="breadcrumbs-item">
+						<li key={to} className={styles.item}>
 							{isLast ? (
-								<span className="breadcrumbs-current">{formattedLabel}</span>
+								<span className={styles.current}>{formattedLabel}</span>
 							) : (
 								<>
-									<Link className="breadcrumbs-link" href={to}>
+									<Link className={styles.link} href={to}>
 										{formattedLabel}
 									</Link>
-									<span className="breadcrumbs-separator"> → </span>
+									<span className={styles.separator}> → </span>
 								</>
 							)}
 						</li>

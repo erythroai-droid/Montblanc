@@ -12,8 +12,9 @@ import {
 	fetchProductsByCategory,
 	fetchProductsSpecials
 } from "../../redux/slices/productsSlice/productsSlice.js";
-import {useIntl} from "react-intl";
+import { useIntl } from "react-intl";
 import useGetCategories from "../CatalogContainer/hooks/useGetCategories.jsx";
+import styles from "./HomeContainer.module.scss";
 
 const HomeContainer = () => {
 	const intl = useIntl();
@@ -37,27 +38,23 @@ const HomeContainer = () => {
 		if (categoriesList) {
 			categoriesList.forEach(item => {
 				dispatch(fetchProductsByCategory(item.id));
-			})
-
+			});
 		}
 	}, [dispatch, categoriesList]);
 
 	return (
-		<div>
-
-			<section className="section_01 padding-top_50">
-				<h2>{intl.formatMessage({id: "specialOffers"})}</h2>
-				{specialStatus === "loading" ? (
-					<p>Loading...</p>
-				) : error ? (
-					<p>Error: {error}. Try again.</p>
-				) : !filteredProducts.length ? (
-					<p>No special offers</p>
-				) : (
-					<ProductList products={filteredProducts} showDiscount={true} />
-				)}
-			</section>
-		</div>
+		<section className={styles.section}>
+			<h2>{intl.formatMessage({ id: "specialOffers" })}</h2>
+			{specialStatus === "loading" ? (
+				<p className={styles.statusMessage}>Loading...</p>
+			) : error ? (
+				<p className={styles.statusMessage}>Error: {error}. Try again.</p>
+			) : !filteredProducts.length ? (
+				<p className={styles.statusMessage}>No special offers</p>
+			) : (
+				<ProductList products={filteredProducts} showDiscount={true} />
+			)}
+		</section>
 	);
 };
 

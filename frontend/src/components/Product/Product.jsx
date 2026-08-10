@@ -3,6 +3,7 @@
 import { memo, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { useIntl } from "react-intl";
+import styles from "./Product.module.scss";
 
 // Utility functions outside component
 const formatForUrl = (str) => str?.toLowerCase().replace(/\s+/g, "-") || "";
@@ -28,8 +29,8 @@ const Product = memo(({ product, showDiscount = false }) => {
     : null;
 
   return (
-    <li className="section_01__promotions-item">
-      <div className="item-image">
+    <li className={styles.item}>
+      <div className={styles.itemImage}>
         <img
           src={product.image}
           width="137"
@@ -39,27 +40,27 @@ const Product = memo(({ product, showDiscount = false }) => {
           decoding="async"
         />
       </div>
-      <div className="price">
+      <div className={styles.price}>
         {hasDiscount ? (
           <>
-            <div>
-              <p className="extra">{discountedPrice}</p> ₪
+            <div className={styles.priceRow}>
+              <p className={styles.extra}>{discountedPrice}</p> ₪
             </div>
-            <p className="offer">
+            <p className={styles.offer}>
               {originalPrice}₪
-              <span className="percent">-{product.discount}%</span>
+              <span className={styles.percent}>-{product.discount}%</span>
             </p>
           </>
         ) : (
-          <p>
-            <span className="extra">{originalPrice}</span> ₪
-          </p>
+          <div className={styles.priceRow}>
+            <span className={styles.extra}>{originalPrice}</span> ₪
+          </div>
         )}
       </div>
-      <p className="item-description">{product.title}</p>
+      <p className={styles.itemDescription}>{product.title}</p>
       <button
         type="button"
-        className="section_01__promotions-item-button button"
+        className={styles.button}
         aria-label={`View details for ${product.title}`}
         onClick={handleClick}
       >

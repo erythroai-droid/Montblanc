@@ -1,0 +1,43 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.section {
+  @include block-set(
+    100%,
+    auto,
+    40px 20px 60px 20px,
+    0 auto,
+    url("/images/bg_fon1.jpg") repeat
+  );
+  box-sizing: border-box;
+  min-height: 500px;
+
+  h2 {
+    color: var(--color-green);
+    margin: 0 0 30px 0;
+    text-align: center;
+    font-size: 3.2rem;
+  }
+}
+
+.container {
+  max-width: 1170px;
+  margin: 0 auto;
+  background: var(--color-white);
+  padding: 30px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+
+  .text {
+    @include font-face($font-size-regular * 1px, 400, var(--color-dark));
+    line-height: 1.8;
+    margin: 0 0 24px 0;
+  }
+}
+
+.mapContainer {
+  margin-top: 20px;
+  border-radius: 8px;
+  overflow: hidden;
+}

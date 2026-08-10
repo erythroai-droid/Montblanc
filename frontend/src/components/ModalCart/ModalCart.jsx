@@ -6,11 +6,12 @@ import { useRouter } from 'next/navigation';
 import { useDispatch } from "react-redux";
 import { removeFromCart, closeCartModal } from "../../redux/slices/cartSlice/cartSlice.js";
 import { useIntl } from "react-intl";
+import styles from "./ModalCart.module.scss";
 
 const closeStyle = {
-	width: "20px",
-	height: "20px",
-	fill: "#ffffff",
+	width: "16px",
+	height: "16px",
+	fill: "#999999",
 };
 
 const ModalCart = ({ cartItems }) => {
@@ -25,44 +26,42 @@ const ModalCart = ({ cartItems }) => {
 	};
 
 	return (
-		<div className="header__drop-cart">
-			<div className="drop-cart-inner">
-				<p className="cart_header">{intl.formatMessage({ id: "yourOrder" })}</p>
-				<p className="cart-amount">
-					<span className="cart-amount-total">{total.toFixed(2)}</span> ₪
+		<div className={styles.dropCart}>
+			<div className={styles.dropCartInner}>
+				<p className={styles.cartHeader}>{intl.formatMessage({ id: "yourOrder" })}</p>
+				<p className={styles.cartAmount}>
+					<span>{total.toFixed(2)}</span> ₪
 				</p>
 			</div>
-			<div className="cart-item-container" data-items>
+			<div className={styles.cartItemContainer} data-items>
 				{cartItems.length === 0 ? (
-					<p>{intl.formatMessage({ id: "cartEmpty" })}</p>
+					<p className={styles.emptyText}>{intl.formatMessage({ id: "cartEmpty" })}</p>
 				) : (
 					cartItems.map((product) => (
-						<div key={product.id} className="cart-item-container">
-							<div className="cart-order-product" key={product.id}>
-								<div className="cart-image">
-									<img
-										src={product.image}
-										width="137"
-										height="156"
-										alt={product.title}
-									/>
-								</div>
-								<p>{product.title}</p>
-								<p><span data-price="">{product.price.toFixed(2)}</span> ₪</p>
-								<p>{product.number} pcs</p>
-								<button
-									className="cart-close"
-									onClick={() => dispatch(removeFromCart(product.id))}
-								>
-									<Close {...closeStyle} />
-								</button>
+						<div className={styles.cartOrderProduct} key={product.id}>
+							<div className={styles.cartImage}>
+								<img
+									src={product.image}
+									width="45"
+									height="45"
+									alt={product.title}
+								/>
 							</div>
+							<p>{product.title}</p>
+							<p><span data-price="">{product.price.toFixed(2)}</span> ₪</p>
+							<p>{product.number} pcs</p>
+							<button
+								className={styles.cartClose}
+								onClick={() => dispatch(removeFromCart(product.id))}
+							>
+								<Close {...closeStyle} />
+							</button>
 						</div>
 					))
 				)}
 			</div>
 			<button
-				className={`header__drop-cart-button ${cartItems.length === 0 ? 'hide' : ''}`}
+				className={`${styles.dropCartButton} ${cartItems.length === 0 ? styles.hide : ''}`}
 				data-cart-total
 				onClick={handleGoToOrder}
 			>

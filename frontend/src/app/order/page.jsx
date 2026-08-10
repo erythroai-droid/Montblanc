@@ -6,9 +6,5 @@ export const metadata = {
 };
 
 export default function OrderPage() {
-  return (
-    <section className="section_catalog">
-      <OrderContainer />
-    </section>
-  );
+  return <OrderContainer />;
 }

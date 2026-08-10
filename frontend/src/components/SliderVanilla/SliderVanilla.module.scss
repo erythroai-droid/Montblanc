@@ -1,0 +1,161 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.slider {
+  @include block-set(100%, 500px, 0, 0 auto, var(--color-black));
+  position: relative;
+  overflow: hidden;
+}
+
+.arrowLeft {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-left: 30px;
+  z-index: 10;
+  width: 50px;
+  height: 50px;
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  @media (max-width: $width-mobile-until) {
+    margin-left: 15px;
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.arrowRight {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 30px;
+  z-index: 10;
+  width: 50px;
+  height: 50px;
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  @media (max-width: $width-mobile-until) {
+    margin-right: 15px;
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.items {
+  overflow: hidden;
+  display: flex;
+  position: relative;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.itemsInner {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease-in-out;
+
+  &.active {
+    position: relative;
+  }
+
+  img {
+    opacity: 0.6;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .description {
+    position: absolute;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left;
+    margin: 0 130px;
+
+    @media (max-width: $width-mobile-until) {
+      margin: 0 30px !important;
+    }
+
+    h2 {
+      color: var(--color-white);
+      margin: 0 0 10px 0;
+      font-size: 3.6rem;
+    }
+
+    .price {
+      @include font-face($font-size-header-third * 1px, 500, var(--color-white));
+      margin-bottom: 20px;
+
+      span {
+        font-size: 48px;
+        color: var(--color-green);
+        font-weight: 700;
+      }
+    }
+
+    .text {
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 300;
+      color: var(--color-white);
+      max-width: 600px;
+    }
+  }
+}
+
+.dots {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background: var(--color-white);
+  opacity: 0.5;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: opacity 0.3s ease, background 0.3s ease;
+
+  &.active {
+    opacity: 1;
+    background: var(--color-green);
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+}

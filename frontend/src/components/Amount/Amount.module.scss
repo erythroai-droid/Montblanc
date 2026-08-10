@@ -1,0 +1,60 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.amountContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    width: 28px;
+    height: 28px;
+    background: #f0fdf4;
+    border: 1px solid rgba(70, 187, 34, 0.3);
+    border-radius: 50%;
+    color: var(--color-green);
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+
+    &:hover:not(:disabled) {
+      background: var(--color-green);
+      color: var(--color-white);
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      border-color: #ddd;
+      color: #999;
+      background: #f5f5f5;
+    }
+  }
+
+  .input {
+    width: 36px;
+    height: 28px;
+    border-radius: 4px;
+    background: #f5f5f5;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    margin: 0 8px;
+    color: var(--color-dark);
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 0;
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    appearance: none;
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+}

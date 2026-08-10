@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import api from "../../../api/api.js";
+import styles from "../admin.module.scss";
 
 export default function AdminProductsPage() {
   const [products, setProducts] = useState([]);
@@ -64,8 +65,8 @@ export default function AdminProductsPage() {
         </div>
       )}
 
-      <div className="admin-card">
-        <div className="admin-card__header">
+      <div className={styles.adminCard}>
+        <div className={styles.cardHeader}>
           <h3>Products Catalog ({filteredProducts.length})</h3>
           <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
             <input
@@ -81,19 +82,19 @@ export default function AdminProductsPage() {
                 fontSize: "13px",
               }}
             />
-            <Link href="/admin/products/new" className="btn-primary">
+            <Link href="/admin/products/new" className={styles.btnPrimary}>
               <span>+</span> Add Product
             </Link>
           </div>
         </div>
 
-        <div className="admin-card__body" style={{ padding: 0 }}>
+        <div className={styles.cardBody} style={{ padding: 0 }}>
           {loading ? (
             <p style={{ padding: "24px", color: "#64748b", margin: 0 }}>Loading products...</p>
           ) : filteredProducts.length === 0 ? (
             <p style={{ padding: "24px", color: "#64748b", margin: 0 }}>No products found.</p>
           ) : (
-            <table className="admin-table">
+            <table className={styles.adminTable}>
               <thead>
                 <tr>
                   <th>Image</th>
@@ -114,10 +115,10 @@ export default function AdminProductsPage() {
                         <img
                           src={product.image.startsWith("data:") ? product.image : `data:image/png;base64,${product.image}`}
                           alt={product.name}
-                          className="thumbnail"
+                          className={styles.thumbnail}
                         />
                       ) : (
-                        <div className="thumbnail" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>📷</div>
+                        <div className={styles.thumbnail} style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>📷</div>
                       )}
                     </td>
                     <td><strong>#{product.id}</strong></td>
@@ -130,21 +131,21 @@ export default function AdminProductsPage() {
                       )}
                     </td>
                     <td>
-                      <span className="badge-tag category">{product.categoryName || "Uncategorized"}</span>
+                      <span className={`${styles.badgeTag} ${styles.category}`}>{product.categoryName || "Uncategorized"}</span>
                     </td>
                     <td>
                       <strong>{parseFloat(product.price).toFixed(2)} ₪</strong>
                     </td>
                     <td>
                       {product.discount > 0 ? (
-                        <span className="badge-tag discount">-{product.discount}%</span>
+                        <span className={`${styles.badgeTag} ${styles.discount}`}>-{product.discount}%</span>
                       ) : (
                         <span style={{ color: "#94a3b8" }}>—</span>
                       )}
                     </td>
                     <td>
                       {product.specialOffers ? (
-                        <span className="badge-tag special">Special</span>
+                        <span className={`${styles.badgeTag} ${styles.special}`}>Special</span>
                       ) : (
                         <span style={{ color: "#94a3b8" }}>—</span>
                       )}
@@ -153,7 +154,7 @@ export default function AdminProductsPage() {
                       <button
                         onClick={() => handleDelete(product.id, product.name)}
                         disabled={deletingId === product.id}
-                        className="btn-delete"
+                        className={styles.btnDelete}
                       >
                         {deletingId === product.id ? "..." : "Delete"}
                       </button>

@@ -2,7 +2,6 @@
 
 import { useEffect, useMemo } from "react";
 import { useParams } from "next/navigation";
-import Product from "../Product/Product.jsx";
 import LeftSidebar from "../LeftSidebar/LeftSidebar.jsx";
 import { useIntl } from "react-intl";
 import { useLanguage } from "../../context/LanguageContext/LanguageContext.jsx";
@@ -18,6 +17,7 @@ import {
 } from "../../redux/slices/productsSlice/productsSelectors.js";
 import ProductsListSkeleton from "../ProductList/ProductsListSkeleton.jsx";
 import ProductsList from "../ProductList/ProductList.jsx";
+import styles from "./CategoryContainer.module.scss";
 
 const CategoryContainer = () => {
   const intl = useIntl();
@@ -55,30 +55,32 @@ const CategoryContainer = () => {
   }, [dispatch, statusByCategories, categoryId]);
 
   return (
-    <div className="section_catalog__container">
-      <div className="top_sidebar">
-        <h3>{intl.formatMessage({ id: "catalog" })}</h3>
-        <TopSidebar />
-      </div>
-      <div className="left_sidebar">
-        <h3>{intl.formatMessage({ id: "catalog" })}</h3>
-        <LeftSidebar />
-      </div>
+    <section className={styles.section}>
+      <div className={styles.container}>
+        <div className={styles.topSidebar}>
+          <h3>{intl.formatMessage({ id: "catalog" })}</h3>
+          <TopSidebar />
+        </div>
+        <div className={styles.leftSidebar}>
+          <h3>{intl.formatMessage({ id: "catalog" })}</h3>
+          <LeftSidebar />
+        </div>
 
-      {loading ? (
-        <ProductsListSkeleton />
-      ) : error ? (
-        <p className="text-red-500">{error}</p>
-      ) : productsByCategories?.length === 0 ? (
-        <p>{intl.formatMessage({ id: "categoryEmpty" })}</p>
-      ) : (
-        <ProductsList
-          products={productsByCategories || []}
-          selectedCategory={selectedCategory}
-          locale={locale}
-        />
-      )}
-    </div>
+        {loading ? (
+          <ProductsListSkeleton />
+        ) : error ? (
+          <p className={styles.error}>{error}</p>
+        ) : productsByCategories?.length === 0 ? (
+          <p className={styles.empty}>{intl.formatMessage({ id: "categoryEmpty" })}</p>
+        ) : (
+          <ProductsList
+            products={productsByCategories || []}
+            selectedCategory={selectedCategory}
+            locale={locale}
+          />
+        )}
+      </div>
+    </section>
   );
 };
 

@@ -1,0 +1,55 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.nav {
+  display: flex;
+  @include block-set(100%, 60px, 0, 0 auto, var(--color-dark));
+  justify-content: center;
+}
+
+.menu {
+  @include block-set(auto, 60px, 0, 0 auto, none);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 50px;
+  white-space: nowrap;
+  padding: 0 20px;
+  margin: 0;
+  list-style: none;
+
+  @media (max-width: $width-mobile-until) {
+    gap: 15px !important;
+    padding: 0 10px;
+    overflow-x: auto;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+.menuItem {
+  @include font-face($font-size-regular * 0.1rem, 300, var(--color-white));
+  text-transform: uppercase;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: var(--color-beige);
+    transition: width 0.3s ease;
+  }
+
+  &:hover {
+    color: var(--color-beige);
+
+    &::after {
+      width: 100%;
+    }
+  }
+}

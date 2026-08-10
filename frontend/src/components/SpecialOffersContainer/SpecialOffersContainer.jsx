@@ -10,7 +10,8 @@ import {
 } from "../../redux/slices/productsSlice/productsSelectors.js";
 import { fetchProductsSpecials } from "../../redux/slices/productsSlice/productsSlice.js";
 import { useIntl } from "react-intl";
-import Preloader from "../../components/PreLoader/PreLoader.jsx"; // Импорт Preloader
+import Preloader from "../../components/PreLoader/PreLoader.jsx";
+import styles from "./SpecialOffersContainer.module.scss";
 
 const SpecialOffersContainer = () => {
 	const intl = useIntl();
@@ -32,20 +33,18 @@ const SpecialOffersContainer = () => {
 	}, [dispatch, specialStatus]);
 
 	return (
-		<div>
-			<section className="section_01">
-				<h2>{intl.formatMessage({ id: "allOffers" })}</h2>
-				{specialStatus === "loading" ? (
-					<Preloader /> // Добавляем Preloader при загрузке
-				) : error ? (
-					<p>{intl.formatMessage({ id: "error" })}: {error}. {intl.formatMessage({ id: "tryAgain" })}</p>
-				) : !filteredProducts.length ? (
-					<p>{intl.formatMessage({ id: "noSpecialOffers" })}</p> // Локализованное сообщение
-				) : (
-					<ProductList products={filteredProducts} showDiscount={true} />
-				)}
-			</section>
-		</div>
+		<section className={styles.section}>
+			<h2>{intl.formatMessage({ id: "allOffers" })}</h2>
+			{specialStatus === "loading" ? (
+				<Preloader />
+			) : error ? (
+				<p className={styles.statusMessage}>{intl.formatMessage({ id: "error" })}: {error}. {intl.formatMessage({ id: "tryAgain" })}</p>
+			) : !filteredProducts.length ? (
+				<p className={styles.statusMessage}>{intl.formatMessage({ id: "noSpecialOffers" })}</p>
+			) : (
+				<ProductList products={filteredProducts} showDiscount={true} />
+			)}
+		</section>
 	);
 };
 

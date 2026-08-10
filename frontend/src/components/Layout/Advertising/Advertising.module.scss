@@ -1,0 +1,97 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.section {
+  @include block-set(100%, auto, 0, 0 auto, var(--color-green));
+  overflow: hidden;
+}
+
+.banner {
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  width: 100%;
+
+  @media (max-width: $width-mobile-until) {
+    flex-wrap: wrap !important;
+  }
+}
+
+.innerLeft {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: right;
+  flex: 1;
+
+  @media (max-width: $width-mobile-until) {
+    justify-content: flex-end !important;
+    margin-right: 0 !important;
+    width: 100%;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+.innerRight {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  flex: 1;
+
+  @media (max-width: $width-mobile-until) {
+    justify-content: flex-start !important;
+    margin-left: 0 !important;
+    width: 100%;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+.text {
+  position: absolute;
+  width: 50%;
+  @include font-face(3rem, 600, var(--color-white));
+  box-sizing: border-box;
+  text-transform: uppercase;
+
+  @media (max-width: $width-desktop) {
+    font-size: 2rem !important;
+  }
+
+  @media (max-width: $width-mobile-until) {
+    width: auto !important;
+    line-height: normal !important;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.paddingRight50 {
+  padding-right: 50px;
+
+  @media (max-width: $width-mobile-until) {
+    padding-right: 10px !important;
+  }
+}
+
+.paddingLeft50 {
+  padding-left: 50px;
+
+  @media (max-width: $width-mobile-until) {
+    padding-left: 10px !important;
+  }
+}

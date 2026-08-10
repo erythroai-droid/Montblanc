@@ -1,23 +1,20 @@
-import React, { useState } from 'react';
-import useCalcAmount from "../../hooks/useCalcAmount.jsx";
+import React from 'react';
+import styles from "./Amount.module.scss";
 
-
-
-const Amount = ({handleDecrease,handleIncrease, counter}) => {
-
-
+const Amount = ({ handleDecrease, handleIncrease, counter }) => {
 	return (
-		<div>
+		<div className={styles.amountContainer}>
 			<button
 				data-amount-decrease
 				onClick={handleDecrease}
 				disabled={counter === 1}
+				type="button"
 			>
 				-
 			</button>
 			<input
 				id="id-amount"
-				className="amount-input"
+				className={styles.input}
 				type="number"
 				value={counter}
 				readOnly
@@ -25,6 +22,7 @@ const Amount = ({handleDecrease,handleIncrease, counter}) => {
 			<button
 				data-amount-increase
 				onClick={handleIncrease}
+				type="button"
 			>
 				+
 			</button>

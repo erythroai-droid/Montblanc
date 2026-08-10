@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import api from "../../../../api/api.js";
+import styles from "../../admin.module.scss";
 
 export default function AddProductPage() {
   const router = useRouter();
@@ -89,23 +90,23 @@ export default function AddProductPage() {
 
   return (
     <div>
-      <div className="admin-card">
-        <div className="admin-card__header">
+      <div className={styles.adminCard}>
+        <div className={styles.cardHeader}>
           <h3>Add New Product</h3>
           <Link href="/admin/products" style={{ fontSize: "13px", color: "#64748b", textDecoration: "none" }}>
             ← Back to Products
           </Link>
         </div>
 
-        <div className="admin-card__body">
+        <div className={styles.cardBody}>
           {error && (
             <div style={{ background: "#fee2e2", color: "#dc2626", padding: "12px 16px", borderRadius: "8px", marginBottom: "20px", fontSize: "13px", fontWeight: 600 }}>
               {error}
             </div>
           )}
 
-          <form onSubmit={handleSubmit} className="admin-form">
-            <div className="form-group">
+          <form onSubmit={handleSubmit} className={styles.adminForm}>
+            <div className={styles.formGroup}>
               <label htmlFor="name">Product Name *</label>
               <input
                 type="text"
@@ -117,8 +118,8 @@ export default function AddProductPage() {
               />
             </div>
 
-            <div className="form-row">
-              <div className="form-group">
+            <div className={styles.formRow}>
+              <div className={styles.formGroup}>
                 <label htmlFor="price">Price (₪) *</label>
                 <input
                   type="number"
@@ -132,7 +133,7 @@ export default function AddProductPage() {
                 />
               </div>
 
-              <div className="form-group">
+              <div className={styles.formGroup}>
                 <label htmlFor="categoryId">Category *</label>
                 <select
                   id="categoryId"
@@ -148,8 +149,8 @@ export default function AddProductPage() {
               </div>
             </div>
 
-            <div className="form-row">
-              <div className="form-group">
+            <div className={styles.formRow}>
+              <div className={styles.formGroup}>
                 <label htmlFor="discount">Discount (%)</label>
                 <input
                   type="number"
@@ -162,8 +163,8 @@ export default function AddProductPage() {
                 />
               </div>
 
-              <div className="form-group" style={{ justifyContent: "center" }}>
-                <label className="checkbox-group" style={{ marginTop: "24px" }}>
+              <div className={styles.formGroup} style={{ justifyContent: "center" }}>
+                <label className={styles.checkboxGroup} style={{ marginTop: "24px" }}>
                   <input
                     type="checkbox"
                     checked={formData.special}
@@ -174,7 +175,7 @@ export default function AddProductPage() {
               </div>
             </div>
 
-            <div className="form-group">
+            <div className={styles.formGroup}>
               <label htmlFor="description">Product Description</label>
               <textarea
                 id="description"
@@ -184,7 +185,7 @@ export default function AddProductPage() {
               />
             </div>
 
-            <div className="form-group">
+            <div className={styles.formGroup}>
               <label htmlFor="image">Product Image *</label>
               <input
                 type="file"
@@ -194,13 +195,13 @@ export default function AddProductPage() {
                 onChange={handleFileChange}
               />
               {previewUrl && (
-                <div className="image-preview">
+                <div className={styles.imagePreview}>
                   <img src={previewUrl} alt="Preview" />
                 </div>
               )}
             </div>
 
-            <button type="submit" disabled={loading} className="btn-submit">
+            <button type="submit" disabled={loading} className={styles.btnSubmit}>
               {loading ? "Saving Product..." : "Create Product"}
             </button>
           </form>

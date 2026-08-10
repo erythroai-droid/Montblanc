@@ -2,6 +2,7 @@
 
 import React, { memo } from "react";
 import Product from "../Product/Product.jsx";
+import styles from "./ProductList.module.scss";
 
 const ProductsList = memo(({ products = [], selectedCategory, locale, showDiscount = false }) => {
   const getNameByLocale = (item, loc) => {
@@ -14,9 +15,9 @@ const ProductsList = memo(({ products = [], selectedCategory, locale, showDiscou
   const categoryTitle = selectedCategory ? getNameByLocale(selectedCategory, locale) : null;
 
   return (
-    <div className={selectedCategory ? "right_sidebar" : ""}>
+    <div className={selectedCategory ? styles.rightSidebar : ""}>
       {categoryTitle && <h2>{categoryTitle}</h2>}
-      <ul className="section_01__promotions">
+      <ul className={styles.list}>
         {products.map((item) => (
           <Product key={item.id} product={item} showDiscount={showDiscount} />
         ))}

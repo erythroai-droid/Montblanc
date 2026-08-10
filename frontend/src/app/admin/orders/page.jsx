@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import api from "../../../api/api.js";
+import styles from "../admin.module.scss";
 
 export default function AdminOrdersPage() {
   const [orders, setOrders] = useState([]);
@@ -66,8 +67,8 @@ export default function AdminOrdersPage() {
         </div>
       )}
 
-      <div className="admin-card">
-        <div className="admin-card__header">
+      <div className={styles.adminCard}>
+        <div className={styles.cardHeader}>
           <h3>Orders ({filteredOrders.length})</h3>
           <input
             type="text"
@@ -84,13 +85,13 @@ export default function AdminOrdersPage() {
           />
         </div>
 
-        <div className="admin-card__body" style={{ padding: 0 }}>
+        <div className={styles.cardBody} style={{ padding: 0 }}>
           {loading ? (
             <p style={{ padding: "24px", color: "#64748b", margin: 0 }}>Loading orders...</p>
           ) : filteredOrders.length === 0 ? (
             <p style={{ padding: "24px", color: "#64748b", margin: 0 }}>No orders found.</p>
           ) : (
-            <table className="admin-table">
+            <table className={styles.adminTable}>
               <thead>
                 <tr>
                   <th>ID</th>
@@ -124,9 +125,9 @@ export default function AdminOrdersPage() {
                         </td>
                         <td>
                           <div style={{ marginBottom: "4px" }}>
-                            <span className="badge-tag category">{order.delivery}</span>
+                            <span className={`${styles.badgeTag} ${styles.category}`}>{order.delivery}</span>
                           </div>
-                          <span className="badge-tag discount">{order.payment}</span>
+                          <span className={`${styles.badgeTag} ${styles.discount}`}>{order.payment}</span>
                         </td>
                         <td>
                           <strong style={{ fontSize: "15px", color: "#16a34a" }}>{order.total} ₪</strong>
@@ -151,7 +152,7 @@ export default function AdminOrdersPage() {
                           <button
                             onClick={() => handleDelete(order.id)}
                             disabled={deletingId === order.id}
-                            className="btn-delete"
+                            className={styles.btnDelete}
                           >
                             {deletingId === order.id ? "..." : "Delete"}
                           </button>

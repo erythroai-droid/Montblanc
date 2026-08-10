@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import api from "../../../api/api.js";
+import styles from "../admin.module.scss";
 
 export default function AdminCategoriesPage() {
   const [categories, setCategories] = useState([]);
@@ -90,19 +91,19 @@ export default function AdminCategoriesPage() {
       )}
 
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px" }}>
-        <div className="admin-card">
-          <div className="admin-card__header">
+        <div className={styles.adminCard}>
+          <div className={styles.cardHeader}>
             <h3>Add New Category</h3>
           </div>
-          <div className="admin-card__body">
+          <div className={styles.cardBody}>
             {error && (
               <div style={{ background: "#fee2e2", color: "#dc2626", padding: "10px 14px", borderRadius: "6px", marginBottom: "16px", fontSize: "13px" }}>
                 {error}
               </div>
             )}
 
-            <form onSubmit={handleAddCategory} className="admin-form">
-              <div className="form-group">
+            <form onSubmit={handleAddCategory} className={styles.adminForm}>
+              <div className={styles.formGroup}>
                 <label htmlFor="cat_name">Category Name (English / Slug basis) *</label>
                 <input
                   type="text"
@@ -114,7 +115,7 @@ export default function AdminCategoriesPage() {
                 />
               </div>
 
-              <div className="form-group">
+              <div className={styles.formGroup}>
                 <label htmlFor="cat_ru">Name (Russian)</label>
                 <input
                   type="text"
@@ -125,7 +126,7 @@ export default function AdminCategoriesPage() {
                 />
               </div>
 
-              <div className="form-group">
+              <div className={styles.formGroup}>
                 <label htmlFor="cat_he">Name (Hebrew)</label>
                 <input
                   type="text"
@@ -136,24 +137,24 @@ export default function AdminCategoriesPage() {
                 />
               </div>
 
-              <button type="submit" disabled={submitting} className="btn-submit">
+              <button type="submit" disabled={submitting} className={styles.btnSubmit}>
                 {submitting ? "Adding..." : "Add Category"}
               </button>
             </form>
           </div>
         </div>
 
-        <div className="admin-card">
-          <div className="admin-card__header">
+        <div className={styles.adminCard}>
+          <div className={styles.cardHeader}>
             <h3>Existing Categories ({categories.length})</h3>
           </div>
-          <div className="admin-card__body" style={{ padding: 0 }}>
+          <div className={styles.cardBody} style={{ padding: 0 }}>
             {loading ? (
               <p style={{ padding: "24px", color: "#64748b", margin: 0 }}>Loading categories...</p>
             ) : categories.length === 0 ? (
               <p style={{ padding: "24px", color: "#64748b", margin: 0 }}>No categories created yet.</p>
             ) : (
-              <table className="admin-table">
+              <table className={styles.adminTable}>
                 <thead>
                   <tr>
                     <th>ID</th>
@@ -174,7 +175,7 @@ export default function AdminCategoriesPage() {
                         <button
                           onClick={() => handleDelete(cat.id, cat.name)}
                           disabled={deletingId === cat.id}
-                          className="btn-delete"
+                          className={styles.btnDelete}
                         >
                           {deletingId === cat.id ? "..." : "Delete"}
                         </button>

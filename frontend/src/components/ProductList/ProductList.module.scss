@@ -1,0 +1,39 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.rightSidebar {
+  width: 80%;
+
+  @media (max-width: $width-mobile-until) {
+    width: 100%;
+  }
+
+  h2 {
+    margin: 0 0 20px 0;
+    color: var(--color-dark);
+    text-align: left;
+
+    @media (max-width: $width-mobile-until) {
+      text-align: center;
+    }
+  }
+
+  .list {
+    justify-content: flex-start;
+
+    @media (max-width: $width-mobile-until) {
+      justify-content: center !important;
+    }
+  }
+}
+
+.list {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 30px;
+  flex-wrap: wrap;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}

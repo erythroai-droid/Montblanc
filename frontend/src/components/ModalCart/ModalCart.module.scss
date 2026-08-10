@@ -1,0 +1,123 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.dropCart {
+  @include block-set(auto, auto, 0px, -55px 0 0 0, var(--color-dark));
+  position: absolute;
+  right: -10px;
+  min-width: 450px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  z-index: 200;
+
+  @media (max-width: $width-mobile-until) {
+    left: 0 !important;
+    right: 0 !important;
+    min-width: auto !important;
+    margin-top: 10px !important;
+    position: static !important;
+    width: 100%;
+  }
+
+  p {
+    @include font-face($font-size-regular * 1px, 300, var(--color-black));
+    margin: 0;
+  }
+}
+
+.dropCartInner {
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .cartHeader {
+    color: var(--color-white);
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  .cartAmount {
+    @include font-face($font-size-header-fourth * 1px, 600, var(--color-beige));
+  }
+}
+
+.cartItemContainer {
+  @include block-set(100%, auto, 0, 0, var(--color-white));
+  box-sizing: border-box;
+  max-height: 350px;
+  overflow-y: auto;
+
+  .emptyText {
+    @include block-set(100%, auto, 20px, 0, var(--color-white));
+    box-sizing: border-box;
+    text-align: center;
+    color: #888;
+  }
+}
+
+.cartOrderProduct {
+  display: grid;
+  grid-template-columns: 50px 1fr auto auto auto;
+  grid-template-rows: 1fr;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 15px;
+  border-bottom: 1px solid #f0f0f0;
+
+  img {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  p {
+    font-size: 13px;
+    color: var(--color-dark);
+  }
+
+  .cartClose {
+    cursor: pointer;
+    background: none;
+    border: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+  }
+}
+
+.dropCartButton {
+  @include font-face($font-size-regular * 1px, 500, var(--color-white));
+  font-family: var(--font-family-roboto);
+  background: var(--color-green);
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  text-align: center;
+  text-transform: uppercase;
+  border: 0;
+  width: 100%;
+  justify-content: center;
+  padding: 12px 0;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--color-green-hover);
+  }
+
+  &.hide {
+    display: none;
+  }
+}

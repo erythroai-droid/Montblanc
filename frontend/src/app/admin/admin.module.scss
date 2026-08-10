@@ -1,5 +1,5 @@
 /* Admin Panel Styles */
-.admin-layout {
+.adminLayout {
   display: flex;
   min-height: 100vh;
   background-color: #f4f6f9;
@@ -7,7 +7,7 @@
   color: #333;
 }
 
-.admin-sidebar {
+.adminSidebar {
   width: 260px;
   background-color: #1e293b;
   color: #f8fafc;
@@ -16,7 +16,7 @@
   flex-shrink: 0;
   box-shadow: 2px 0 8px rgba(0,0,0,0.05);
 
-  &__header {
+  .sidebarHeader {
     padding: 24px 20px;
     border-bottom: 1px solid #334155;
     display: flex;
@@ -31,7 +31,7 @@
       letter-spacing: 0.5px;
     }
 
-    span.badge {
+    .badge {
       background-color: #46bb22;
       color: #fff;
       font-size: 11px;
@@ -42,7 +42,7 @@
     }
   }
 
-  &__nav {
+  .sidebarNav {
     padding: 16px 0;
     flex-grow: 1;
 
@@ -82,13 +82,13 @@
     }
   }
 
-  &__footer {
+  .sidebarFooter {
     padding: 20px;
     border-top: 1px solid #334155;
   }
 }
 
-.admin-main {
+.adminMain {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -96,7 +96,7 @@
   overflow-y: auto;
 }
 
-.admin-header {
+.adminHeader {
   height: 70px;
   background-color: #ffffff;
   border-bottom: 1px solid #e2e8f0;
@@ -106,32 +106,32 @@
   padding: 0 32px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.02);
 
-  &__title {
+  .headerTitle {
     font-size: 22px;
     font-weight: 700;
     color: #0f172a;
     margin: 0;
   }
 
-  &__user {
+  .headerUser {
     display: flex;
     align-items: center;
     gap: 16px;
 
-    .user-info {
+    .userInfo {
       text-align: right;
-      .user-name {
+      .userName {
         font-size: 14px;
         font-weight: 600;
         color: #0f172a;
       }
-      .user-role {
+      .userRole {
         font-size: 12px;
         color: #64748b;
       }
     }
 
-    .btn-logout {
+    .btnLogout {
       background: #fee2e2;
       color: #ef4444;
       border: none;
@@ -149,20 +149,20 @@
   }
 }
 
-.admin-content {
+.adminContent {
   padding: 32px;
   flex-grow: 1;
 }
 
 /* Stats Cards */
-.admin-stats-grid {
+.adminStatsGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 24px;
   margin-bottom: 32px;
 }
 
-.stat-card {
+.statCard {
   background: #ffffff;
   border-radius: 12px;
   padding: 24px;
@@ -172,7 +172,7 @@
   align-items: center;
   gap: 20px;
 
-  &__icon {
+  .statIcon {
     width: 54px;
     height: 54px;
     border-radius: 12px;
@@ -187,7 +187,7 @@
     &.amber { background: #fef3c7; color: #d97706; }
   }
 
-  &__info {
+  .statInfo {
     h3 {
       font-size: 28px;
       font-weight: 700;
@@ -206,7 +206,7 @@
 }
 
 /* Data Tables & Cards */
-.admin-card {
+.adminCard {
   background: #ffffff;
   border-radius: 12px;
   border: 1px solid #e2e8f0;
@@ -214,7 +214,7 @@
   overflow: hidden;
   margin-bottom: 24px;
 
-  &__header {
+  .cardHeader {
     padding: 20px 24px;
     border-bottom: 1px solid #e2e8f0;
     display: flex;
@@ -229,12 +229,12 @@
     }
   }
 
-  &__body {
+  .cardBody {
     padding: 24px;
   }
 }
 
-.admin-table {
+.adminTable {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
@@ -270,7 +270,7 @@
     background-color: #f1f5f9;
   }
 
-  .badge-tag {
+  .badgeTag {
     display: inline-block;
     padding: 4px 8px;
     border-radius: 6px;
@@ -282,7 +282,7 @@
     &.category { background: #e0f2fe; color: #0369a1; }
   }
 
-  .btn-delete {
+  .btnDelete {
     background: #fee2e2;
     color: #ef4444;
     border: none;
@@ -301,13 +301,13 @@
 }
 
 /* Forms */
-.admin-form {
+.adminForm {
   display: flex;
   flex-direction: column;
   gap: 20px;
   max-width: 640px;
 
-  .form-group {
+  .formGroup {
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -344,13 +344,13 @@
     }
   }
 
-  .form-row {
+  .formRow {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px;
   }
 
-  .checkbox-group {
+  .checkboxGroup {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -369,7 +369,7 @@
     }
   }
 
-  .btn-submit {
+  .btnSubmit {
     background-color: #46bb22;
     color: #ffffff;
     border: none;
@@ -391,7 +391,7 @@
     }
   }
 
-  .image-preview {
+  .imagePreview {
     margin-top: 10px;
     width: 120px;
     height: 120px;
@@ -407,7 +407,7 @@
   }
 }
 
-.btn-primary {
+.btnPrimary {
   display: inline-flex;
   align-items: center;
   gap: 8px;

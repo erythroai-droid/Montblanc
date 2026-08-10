@@ -4,6 +4,7 @@ import React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import useGetCategories from "../CatalogContainer/hooks/useGetCategories.jsx";
 import { useLanguage } from "../../context/LanguageContext/LanguageContext.jsx";
+import styles from "./TopSidebar.module.scss";
 
 const TopSidebar = () => {
 	const params = useParams();
@@ -38,7 +39,7 @@ const TopSidebar = () => {
 	return (
 		<select
 			id="category-select"
-			className={`select__list lang-${locale}`}
+			className={styles.selectList}
 			onChange={handleCategoryChange}
 			value={
 				categoriesList.find(
@@ -54,7 +55,6 @@ const TopSidebar = () => {
 					<option
 						key={item.id}
 						value={item.id}
-						className={categorySlug === category ? 'selected' : ''}
 					>
 						{categoryName}
 					</option>

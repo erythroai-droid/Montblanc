@@ -6,12 +6,10 @@ import Amount from "../Amount/Amount.jsx";
 import useCalcAmount from "../../hooks/useCalcAmount.jsx";
 import api from "../../api/api.js";
 import useGetCategories from "../CatalogContainer/hooks/useGetCategories.jsx";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addProductToCart, openCartModal } from "../../redux/slices/cartSlice/cartSlice.js";
 import { useIntl } from "react-intl";
-import {
-	selectProductsByCategory
-} from "../../redux/slices/productsSlice/productsSelectors.js";
+import styles from "./DetailProductContainer.module.scss";
 
 const DetailProductContainer = () => {
 	const intl = useIntl();
@@ -61,17 +59,21 @@ const DetailProductContainer = () => {
 
 	if (loading && !product) {
 		return (
-			<section className="section_01">
-				<p>Loading product...</p>
+			<section className={styles.section}>
+				<div className={styles.statusContainer}>
+					<p>Loading product...</p>
+				</div>
 			</section>
 		);
 	}
 
 	if (!product) {
 		return (
-			<section className="section_01">
-				<h2>Product Not Found</h2>
-				<p>The product you are looking for does not exist.</p>
+			<section className={styles.section}>
+				<div className={styles.statusContainer}>
+					<h2>Product Not Found</h2>
+					<p>The product you are looking for does not exist.</p>
+				</div>
 			</section>
 		);
 	}
@@ -95,33 +97,33 @@ const DetailProductContainer = () => {
 	};
 
 	return (
-		<section className="section_catalog">
-			<div className="section_catalog__container_product">
-				<div className="container_top">
-					<div className="foto">
+		<section className={styles.section}>
+			<div className={styles.containerProduct}>
+				<div className={styles.containerTop}>
+					<div className={styles.foto}>
 						<img
 							src={product.image}
 							alt={product.title}
 						/>
 					</div>
-					<div className="description">
+					<div className={styles.description}>
 						<h4>{product.title}</h4>
 						<p>{product.description}</p>
 					</div>
 				</div>
-				<div className="container_bottom">
-					<div className="amount">
+				<div className={styles.containerBottom}>
+					<div className={styles.amount}>
 						<h3>{intl.formatMessage({ id: "amount" })}</h3>
 						<Amount handleDecrease={handleDecrease} handleIncrease={handleIncrease} counter={counter} />
 					</div>
-					<div className="price">
+					<div className={styles.price}>
 						<h3>{intl.formatMessage({ id: "price" })}</h3>
-						<span className="extra">
+						<span className={styles.extra}>
 							{calculatePrice(product.price, product.discount)} ₪
 						</span>
 					</div>
 					<button
-						className="section_01__promotions-item-button button"
+						className={styles.button}
 						data-cart
 						onClick={handleAddToCart}
 					>

@@ -1,0 +1,126 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.item {
+  width: 270px;
+  padding: 30px;
+  background: var(--color-white);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 20px;
+  box-sizing: border-box;
+  list-style: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: $width-mobile-until) {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+.itemImage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 160px;
+
+  img {
+    max-width: 100%;
+    max-height: 156px;
+    object-fit: contain;
+  }
+}
+
+.price {
+  text-align: center;
+
+  .priceRow {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .extra {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--color-dark);
+    margin: 0;
+  }
+
+  .offer {
+    font-size: 14px;
+    font-weight: 300;
+    text-decoration: line-through;
+    margin: 6px 0 0 0;
+    color: #888;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .percent {
+    display: inline-block;
+    background: var(--color-green);
+    margin-left: 8px;
+    border-radius: 20px;
+    color: var(--color-white);
+    padding: 2px 8px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+}
+
+.itemDescription {
+  @include font-face($font-size-regular * 1px, 400, var(--color-dark));
+  width: 100%;
+  text-align: center;
+  margin: 0;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  @include block-set(
+    auto,
+    auto,
+    10px 24px,
+    0 auto,
+    var(--color-green)
+  );
+  border: 0;
+  border-radius: 40px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-white);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--color-green-hover);
+  }
+}
+
+.skeletonPulse {
+  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

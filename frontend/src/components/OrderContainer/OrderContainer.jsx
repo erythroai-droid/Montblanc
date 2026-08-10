@@ -11,11 +11,12 @@ import { selectCartItems } from "../../redux/slices/cartSlice/cartSelectors.js";
 import api from "../../api/api.js";
 import { useIntl } from "react-intl";
 import { useRouter } from "next/navigation";
+import styles from "./OrderContainer.module.scss";
 
 const closeStyle = {
-	width: "20px",
-	height: "20px",
-	fill: "#ffffff",
+	width: "18px",
+	height: "18px",
+	fill: "#94a3b8",
 };
 
 const OrderContainer = () => {
@@ -93,49 +94,47 @@ const OrderContainer = () => {
 	};
 
 	return (
-		<div className="section_01">
-			<div className="section_01__header_container">
+		<div className={styles.section}>
+			<div className={styles.headerContainer}>
 				<h2>{intl.formatMessage({ id: "orderProducts" })}</h2>
 			</div>
 
-			<div className="section_01__shopping-cart-container">
-				<div className="cart-item-container" data-items>
+			<div className={styles.shoppingCartContainer}>
+				<div className={styles.cartItemContainer} data-items>
 					{cartItems.length === 0 ? (
-						<p>Your cart is empty</p>
+						<p className={styles.emptyCart}>Your cart is empty</p>
 					) : (
 						cartItems.map((product) => (
-							<div key={product.id} className="cart-item-container">
-								<div className="cart-order-product" key={product.id}>
-									<div className="cart-image">
-										<img
-											src={product.image}
-											width="137"
-											height="156"
-											alt={product.title}
-										/>
-									</div>
-									<p>{product.title}</p>
-									<p><span data-price="">{product.price.toFixed(2)}</span> ₪</p>
-									<p>{product.number} pcs</p>
-									<button
-										className="cart-close"
-										onClick={() => dispatch(removeFromCart(product.id))}
-									>
-										<Close {...closeStyle} />
-									</button>
+							<div key={product.id} className={styles.cartOrderProduct}>
+								<div className={styles.cartImage}>
+									<img
+										src={product.image}
+										width="50"
+										height="50"
+										alt={product.title}
+									/>
 								</div>
+								<p>{product.title}</p>
+								<p><span data-price="">{product.price.toFixed(2)}</span> ₪</p>
+								<p>{product.number} pcs</p>
+								<button
+									className={styles.cartClose}
+									onClick={() => dispatch(removeFromCart(product.id))}
+								>
+									<Close {...closeStyle} />
+								</button>
 							</div>
 						))
 					)}
 				</div>
-				<div className="total_order_price">
+				<div className={styles.totalOrderPrice}>
 					<h3>{intl.formatMessage({ id: "totalPrice" })}:</h3>
 					<p><span data-order-price>{total.toFixed(2)}</span> ₪</p>
 				</div>
-				<div className="order_delivery">
+				<div className={styles.orderDelivery}>
 					<h4>{intl.formatMessage({ id: "orderTime" })}</h4>
-					<div className="radio_group">
-						<label className="container">
+					<div className={styles.radioGroup}>
+						<label className={styles.radioLabel}>
 							<input
 								type="radio"
 								checked={deliveryTerms === "Tomorrow from 9am to 12pm"}
@@ -143,9 +142,9 @@ const OrderContainer = () => {
 								value="Tomorrow from 9am to 12pm"
 								onChange={(e) => setDeliveryTerms(e.target.value)}
 							/>
-							<span className="checkmark">{intl.formatMessage({ id: "tomorrowFrom" })} 9am to 12pm</span>
+							<span className={styles.checkmark}>{intl.formatMessage({ id: "tomorrowFrom" })} 9am to 12pm</span>
 						</label>
-						<label className="container">
+						<label className={styles.radioLabel}>
 							<input
 								type="radio"
 								checked={deliveryTerms === "Tomorrow from 1pm to 4pm"}
@@ -153,9 +152,9 @@ const OrderContainer = () => {
 								value="Tomorrow from 1pm to 4pm"
 								onChange={(e) => setDeliveryTerms(e.target.value)}
 							/>
-							<span className="checkmark">{intl.formatMessage({ id: "tomorrowFrom" })} 1pm to 4pm</span>
+							<span className={styles.checkmark}>{intl.formatMessage({ id: "tomorrowFrom" })} 1pm to 4pm</span>
 						</label>
-						<label className="container">
+						<label className={styles.radioLabel}>
 							<input
 								type="radio"
 								checked={deliveryTerms === "Tomorrow from 5pm to 8pm"}
@@ -163,14 +162,17 @@ const OrderContainer = () => {
 								value="Tomorrow from 5pm to 8pm"
 								onChange={(e) => setDeliveryTerms(e.target.value)}
 							/>
-							<span className="checkmark">{intl.formatMessage({ id: "tomorrowFrom" })} 5pm to 8pm</span>
+							<span className={styles.checkmark}>{intl.formatMessage({ id: "tomorrowFrom" })} 5pm to 8pm</span>
 						</label>
 					</div>
 				</div>
-				<div className="order_info">
+				<div className={styles.orderInfo}>
 					<form id="order_form" autoComplete="on">
 						<h4>{intl.formatMessage({ id: "personalInformation" })}</h4>
-						<label htmlFor="name">{intl.formatMessage({ id: "name" })}<span className="red">*</span></label>
+						<label htmlFor="name">
+							{intl.formatMessage({ id: "name" })}
+							<span className={styles.red}>*</span>
+						</label>
 						<input
 							placeholder={intl.formatMessage({ id: "yourName" })}
 							autoComplete="on"
@@ -181,9 +183,11 @@ const OrderContainer = () => {
 							value={formData.userName}
 							onChange={(e) => setFormData({ ...formData, userName: e.target.value })}
 						/>
-						{formErrors.userName && <p className="error">{formErrors.userName}</p>}
+						{formErrors.userName && <p className={styles.error}>{formErrors.userName}</p>}
 
-						<label htmlFor="email">Email<span className="red">*</span></label>
+						<label htmlFor="email">
+							Email<span className={styles.red}>*</span>
+						</label>
 						<input
 							placeholder="email"
 							autoComplete="on"
@@ -194,9 +198,12 @@ const OrderContainer = () => {
 							onChange={(e) => setFormData({ ...formData, userEmail: e.target.value })}
 							required
 						/>
-						{formErrors.userEmail && <p className="error">{formErrors.userEmail}</p>}
+						{formErrors.userEmail && <p className={styles.error}>{formErrors.userEmail}</p>}
 
-						<label htmlFor="adress">{intl.formatMessage({ id: "adress" })}<span className="red">*</span></label>
+						<label htmlFor="adress">
+							{intl.formatMessage({ id: "adress" })}
+							<span className={styles.red}>*</span>
+						</label>
 						<input
 							placeholder={intl.formatMessage({ id: "adressDelivery" })}
 							name="adress"
@@ -206,9 +213,12 @@ const OrderContainer = () => {
 							onChange={(e) => setFormData({ ...formData, userAdress: e.target.value })}
 							required
 						/>
-						{formErrors.userAdress && <p className="error">{formErrors.userAdress}</p>}
+						{formErrors.userAdress && <p className={styles.error}>{formErrors.userAdress}</p>}
 
-						<label htmlFor="phone">{intl.formatMessage({ id: "phone" })}<span className="red">*</span></label>
+						<label htmlFor="phone">
+							{intl.formatMessage({ id: "phone" })}
+							<span className={styles.red}>*</span>
+						</label>
 						<input
 							placeholder={intl.formatMessage({ id: "yourPhone" })}
 							autoComplete="on"
@@ -219,7 +229,7 @@ const OrderContainer = () => {
 							onChange={(e) => setFormData({ ...formData, userPhone: e.target.value })}
 							required
 						/>
-						{formErrors.userPhone && <p className="error">{formErrors.userPhone}</p>}
+						{formErrors.userPhone && <p className={styles.error}>{formErrors.userPhone}</p>}
 
 						<label htmlFor="comment">{intl.formatMessage({ id: "comment" })}</label>
 						<textarea
@@ -231,10 +241,10 @@ const OrderContainer = () => {
 						></textarea>
 					</form>
 				</div>
-				<div className="order_payment">
+				<div className={styles.orderPayment}>
 					<h4>{intl.formatMessage({ id: "payment" })}</h4>
-					<div className="order_payment__container">
-						<label className="wrapper">{intl.formatMessage({ id: "cardToCourier" })}
+					<div className={styles.container}>
+						<label className={styles.wrapper}>
 							<input
 								type="radio"
 								checked={paymentMethods === "By card to the courier"}
@@ -242,9 +252,9 @@ const OrderContainer = () => {
 								value="By card to the courier"
 								onChange={(e) => setPaymentMethods(e.target.value)}
 							/>
-							<span className="checkmark">&nbsp;</span>
+							{intl.formatMessage({ id: "cardToCourier" })}
 						</label>
-						<label className="wrapper">{intl.formatMessage({ id: "cashToCourier" })}
+						<label className={styles.wrapper}>
 							<input
 								type="radio"
 								checked={paymentMethods === "Cash to the courier"}
@@ -252,9 +262,9 @@ const OrderContainer = () => {
 								name="radio_2"
 								value="Cash to the courier"
 							/>
-							<span className="checkmark">&nbsp;</span>
+							{intl.formatMessage({ id: "cashToCourier" })}
 						</label>
-						<label className="wrapper">VISA, MasterCard
+						<label className={styles.wrapper}>
 							<input
 								type="radio"
 								checked={paymentMethods === "VISA, MasterCard"}
@@ -262,12 +272,12 @@ const OrderContainer = () => {
 								name="radio_2"
 								value="VISA, MasterCard"
 							/>
-							<span className="checkmark">&nbsp;</span>
+							VISA, MasterCard
 						</label>
 					</div>
 				</div>
 				<button
-					className="total_order_price"
+					className={styles.totalOrderPrice}
 					data-order-send
 					onClick={handleOrderSubmit}
 					disabled={isSending || cartItems.length === 0}
@@ -279,8 +289,8 @@ const OrderContainer = () => {
 					</h3>
 				</button>
 
-				{successMessage && <p className="status">{successMessage}</p>}
-				{errorMessage && <p className="status">{errorMessage}</p>}
+				{successMessage && <p className={styles.status}>{successMessage}</p>}
+				{errorMessage && <p className={styles.status} style={{ color: "#ef4444" }}>{errorMessage}</p>}
 			</div>
 		</div>
 	);

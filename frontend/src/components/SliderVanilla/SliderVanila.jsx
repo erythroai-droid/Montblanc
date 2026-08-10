@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import imageData from "../../data/package_slider.json";
 import ArrowLeft from '../../icons/ArrowLeft/ArrowLeft.jsx';
 import ArrowRight from '../../icons/ArrowRight/ArrowRight.jsx';
+import styles from "./SliderVanilla.module.scss";
 
 const SliderVanilla = () => {
     const [slideIndex, setSlideIndex] = useState(0);
@@ -39,38 +40,38 @@ const SliderVanilla = () => {
     };
 
     return (
-      <section className="slider">
-          <div className="slider__arrow_left" onClick={prevSlide}>
+      <section className={styles.slider}>
+          <div className={styles.arrowLeft} onClick={prevSlide}>
               <ArrowLeft/>
           </div>
-          <div className="slider__arrow_right" onClick={nextSlide}>
+          <div className={styles.arrowRight} onClick={nextSlide}>
               <ArrowRight/>
           </div>
-          <ul className="slider__items">
+          <ul className={styles.items}>
               {imageData.map((slide, index) => (
                 <li
                   key={slide.id}
-                  className={`slider__items-inner ${index === slideIndex ? "active" : ""}`}
+                  className={`${styles.itemsInner} ${index === slideIndex ? styles.active : ""}`}
                   style={{
                       transform: `translateX(${(index - slideIndex) * 100}%)`,
                   }}
                 >
                     <img src={slide.src} alt={slide.title} />
-                    <div className="description">
+                    <div className={styles.description}>
                         <h2>{slide.title}</h2>
-                        <p className="price">
+                        <p className={styles.price}>
                             from <span>{slide.price}</span> ₪ / kg
                         </p>
-                        <p className="text">{slide.description}</p>
+                        <p className={styles.text}>{slide.description}</p>
                     </div>
                 </li>
               ))}
           </ul>
-          <div className="slider__dots">
+          <div className={styles.dots}>
               {imageData.map((_, index) => (
                 <span
                   key={index}
-                  className={`slider__dot ${index === slideIndex ? "active" : ""}`}
+                  className={`${styles.dot} ${index === slideIndex ? styles.active : ""}`}
                   onClick={() => goToSlide(index)}
                 ></span>
               ))}

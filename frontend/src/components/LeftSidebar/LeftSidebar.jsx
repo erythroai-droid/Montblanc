@@ -6,6 +6,7 @@ import { useParams } from 'next/navigation';
 import { useLanguage } from "../../context/LanguageContext/LanguageContext.jsx";
 import { selectCategories } from "../../redux/slices/categoriesSlice/categoriesSelectors.js";
 import { useSelector } from "react-redux";
+import styles from "./LeftSidebar.module.scss";
 
 const LeftSidebar = () => {
 	const params = useParams();
@@ -25,7 +26,7 @@ const LeftSidebar = () => {
 	const generateSlug = (name) => name ? name.toLowerCase().replace(/\s+/g, '-') : '';
 
 	return (
-		<ul className={`catalog__list lang-${locale}`}>
+		<ul className={styles.catalogList}>
 			{categoriesList.map((item) => {
 				const categoryName = getNameByLocale(item, locale);
 				const categorySlug = generateSlug(item.name);
@@ -37,11 +38,10 @@ const LeftSidebar = () => {
 				return (
 					<li
 						key={item.id}
-						data-catalog-list
-						className={`${isSelected ? 'selected' : ''}`}
+						className={isSelected ? styles.selected : ''}
 					>
-						<Link href={`/catalog/${categorySlug}`}>
-							<span className="catalog__item">{categoryName}</span>
+						<Link href={`/catalog/${categorySlug}`} className={styles.catalogItem}>
+							<span>{categoryName}</span>
 						</Link>
 					</li>
 				);

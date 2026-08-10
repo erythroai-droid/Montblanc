@@ -1,0 +1,43 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.section {
+  @include block-set(100%, 100px, 0, 0 auto, var(--color-green));
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: $width-desktop) {
+    display: none !important;
+  }
+}
+
+.container {
+  display: flex;
+  max-width: 1170px;
+  width: 100%;
+  justify-content: space-between;
+  gap: 50px;
+  height: 100%;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+  @include font-face($font-size-regular * 1px, 400, var(--color-white));
+  text-transform: uppercase;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+
+  p {
+    margin: 0;
+  }
+
+  .black {
+    color: var(--color-dark);
+    font-weight: 600;
+    margin-right: 5px;
+  }
+}

@@ -1,11 +1,12 @@
 "use client";
 
 import React from 'react';
+import styles from "./AuthContainer.module.scss";
 
 const SignInContainer = () => {
 	return (
-		<section className="section_01">
-			<h2>Sign In Container</h2>
+		<section className={styles.section}>
+			<h2>Sign In</h2>
 		</section>
 	);
 };

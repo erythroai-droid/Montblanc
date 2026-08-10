@@ -3,8 +3,8 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import "../../styles/admin.scss";
 import api from "../../api/api.js";
+import styles from "./admin.module.scss";
 
 export default function AdminLayout({ children }) {
   const pathname = usePathname();
@@ -56,20 +56,20 @@ export default function AdminLayout({ children }) {
   ];
 
   return (
-    <div className="admin-layout">
-      <aside className="admin-sidebar">
-        <div className="admin-sidebar__header">
+    <div className={styles.adminLayout}>
+      <aside className={styles.adminSidebar}>
+        <div className={styles.sidebarHeader}>
           <h2>Mont Blanc</h2>
-          <span className="badge">Admin</span>
+          <span className={styles.badge}>Admin</span>
         </div>
 
-        <nav className="admin-sidebar__nav">
+        <nav className={styles.sidebarNav}>
           <ul>
             {navItems.map((item) => {
               const isActive = pathname === item.href;
               return (
                 <li key={item.href}>
-                  <Link href={item.href} className={isActive ? "active" : ""}>
+                  <Link href={item.href} className={isActive ? styles.active : ""}>
                     <span>{item.icon}</span>
                     <span>{item.label}</span>
                   </Link>
@@ -79,34 +79,34 @@ export default function AdminLayout({ children }) {
           </ul>
         </nav>
 
-        <div className="admin-sidebar__footer">
+        <div className={styles.sidebarFooter}>
           <Link href="/" style={{ color: "#94a3b8", textDecoration: "none", fontSize: "13px", display: "flex", alignItems: "center", gap: "8px" }}>
             <span>←</span> Back to Store
           </Link>
         </div>
       </aside>
 
-      <div className="admin-main">
-        <header className="admin-header">
-          <h1 className="admin-header__title">
+      <div className={styles.adminMain}>
+        <header className={styles.adminHeader}>
+          <h1 className={styles.headerTitle}>
             {pathname === "/admin" && "Dashboard"}
             {pathname === "/admin/orders" && "Orders Management"}
             {pathname.startsWith("/admin/products") && "Products Management"}
             {pathname === "/admin/categories" && "Categories Management"}
           </h1>
 
-          <div className="admin-header__user">
-            <div className="user-info">
-              <div className="user-name">{stats?.userName || "Administrator"}</div>
-              <div className="user-role">{stats?.isAdmin ? "Super Admin" : "User"}</div>
+          <div className={styles.headerUser}>
+            <div className={styles.userInfo}>
+              <div className={styles.userName}>{stats?.userName || "Administrator"}</div>
+              <div className={styles.userRole}>{stats?.isAdmin ? "Super Admin" : "User"}</div>
             </div>
-            <button onClick={handleLogout} className="btn-logout">
+            <button onClick={handleLogout} className={styles.btnLogout}>
               Logout
             </button>
           </div>
         </header>
 
-        <main className="admin-content">
+        <main className={styles.adminContent}>
           {children}
         </main>
       </div>
