@@ -20,7 +20,7 @@ public class CorsConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
+        var registration = registry.addMapping("/**")
                 .allowedOriginPatterns(
                         "http://localhost:[*]",
                         "http://127.0.0.1:[*]",
@@ -33,6 +33,14 @@ public class CorsConfig implements WebMvcConfigurer {
                 .exposedHeaders("Authorization", "Set-Cookie")
                 .allowCredentials(true)
                 .maxAge(3600);
+
+        if (allowedOrigins != null && allowedOrigins.length > 0) {
+            for (String origin : allowedOrigins) {
+                if (origin != null && !origin.isBlank()) {
+                    registration.allowedOriginPatterns(origin.trim());
+                }
+            }
+        }
     }
 
     @Bean

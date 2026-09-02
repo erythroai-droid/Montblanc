@@ -22,7 +22,6 @@ public class ProductFetchController {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    @CrossOrigin(origins = {"http://localhost:5173", "http://localhost:5174", "http://localhost:8080","https://pizza-na-dom.mk.ua"})
     @GetMapping("/products")
     @ResponseBody
     public List<ProductDTO> getProducts(

@@ -23,7 +23,6 @@ public class AuthController {
     @Autowired
     private UserRepository userRepository;
 
-    @CrossOrigin(origins = {"http://localhost:5173", "http://localhost:5174", "http://localhost:8080", "https://pizza-na-dom.mk.ua"}, allowCredentials = "true")
     @GetMapping("/me")
     public ResponseEntity<UserSessionDTO> me(HttpSession session) {
         User user = (User) session.getAttribute("user");
@@ -34,14 +33,12 @@ public class AuthController {
         return ResponseEntity.ok(new UserSessionDTO(name, user.getLogin()));
     }
 
-    @CrossOrigin(origins = {"http://localhost:5173", "http://localhost:5174", "http://localhost:8080", "https://pizza-na-dom.mk.ua"}, allowCredentials = "true")
     @PostMapping("/logout")
     public ResponseEntity<Void> logout(HttpSession session) {
         session.invalidate();
         return ResponseEntity.ok().build();
     }
 
-    @CrossOrigin(origins = {"http://localhost:5173", "http://localhost:5174", "http://localhost:8080", "https://pizza-na-dom.mk.ua"})
     @PostMapping("/register")
     public ResponseEntity<RegisterResponse> register(@RequestBody RegisterRequest request) {
         if (request.getLogin() == null || request.getLogin().isBlank()) {

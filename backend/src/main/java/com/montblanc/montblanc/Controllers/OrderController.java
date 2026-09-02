@@ -36,15 +36,14 @@ public class OrderController {
     private static final String LOGO_CID = "logomontblanc";
     private static final String PRODUCT_CID_PREFIX = "product-";
 
-    @CrossOrigin(origins = {"http://localhost:5173", "http://localhost:5174", "http://localhost:8080", "https://pizza-na-dom.mk.ua"}, allowCredentials = "true")
     @PostMapping("/order")
-    public String order(@RequestBody Orders orders, HttpSession session) {
+    public ResponseEntity<?> order(@RequestBody Orders orders, HttpSession session) {
         User currentUser = (User) session.getAttribute("user");
         if (currentUser != null) {
             orders.setUserId(currentUser.getId());
         }
 
-        List<OrderProducts> productList = new ArrayList<>(orders.getProducts());
+        List<OrderProducts> productList = orders.getProducts() != null ? new ArrayList<>(orders.getProducts()) : new ArrayList<>();
 
         for (OrderProducts product : productList) {
             product.setOrders(orders);
@@ -52,9 +51,13 @@ public class OrderController {
 
         try {
             logger.info("Processing order for email: {}, userId: {}", orders.getEmail(), orders.getUserId());
-
             ordersRepository.save(orders);
+        } catch (Exception e) {
+            logger.error("Error saving order to database", e);
+            return ResponseEntity.status(500).body(Map.of("status", "error", "message", "Failed to save order"));
+        }
 
+        try {
             Map<String, byte[]> inlineImages = new LinkedHashMap<>();
 
             byte[] logoBytes = null;
@@ -175,11 +178,15 @@ public class OrderController {
                 emailService.sendMultipartMessage(orders.getEmail(), "Order № " + orders.getId() + " from MontBlanc", finalBody);
             }
             logger.info("After sending email to: {}", orders.getEmail());
-            return "Success";
         } catch (Exception e) {
-            logger.error("Error in order processing for email {}", orders.getEmail(), e);
-            return "Sending ERROR";
+            logger.warn("Order #{} was saved, but failed to send email to {}: {}", orders.getId(), orders.getEmail(), e.getMessage());
         }
+
+        return ResponseEntity.ok(Map.of(
+                "status", "success",
+                "message", "Order placed successfully",
+                "orderId", orders.getId()
+        ));
     }
 
     private byte[] decodeBase64Image(String imageData) {

@@ -1,6 +1,9 @@
 import axios from "axios";
 
-const API_BASE_URL = (process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080").replace(/\/$/, "");
+const API_BASE_URL = (
+	process.env.NEXT_PUBLIC_API_URL ||
+	(process.env.NODE_ENV === "production" ? "/backend-api" : "http://localhost:8080")
+).replace(/\/$/, "");
 
 const httpRequest = async (method, url, data, config = {}) => {
 	try {
@@ -56,9 +59,7 @@ const api = {
 		getOrders: () => httpRequest("GET", `/api/admin/orders`),
 		deleteOrder: (id) => httpRequest("DELETE", `/api/admin/orders/${id}`),
 		getProducts: () => httpRequest("GET", `/api/admin/products`),
-		createProduct: (formData) => httpRequest("POST", `/api/admin/products`, formData, {
-			headers: { 'Content-Type': 'multipart/form-data' }
-		}),
+		createProduct: (formData) => httpRequest("POST", `/api/admin/products`, formData),
 		deleteProduct: (id) => httpRequest("DELETE", `/api/admin/products/${id}`),
 		getCategories: () => httpRequest("GET", `/api/admin/categories`),
 		createCategory: (params) => httpRequest("POST", `/api/admin/categories?${new URLSearchParams(params).toString()}`),
