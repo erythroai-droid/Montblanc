@@ -153,58 +153,31 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 32px;
-  gap: 16px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.02);
 
-  @media (max-width: 768px) {
-    height: auto;
-    min-height: 60px;
-    padding: 12px 16px;
-  }
-
-  .headerLeft {
+  .headerTop {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 16px;
+    order: 2;
   }
 
-  .btnMenuToggle {
+  .headerBrandMobile {
     display: none;
-    background: #f8fafc;
-    border: 1px solid #cbd5e1;
-    border-radius: 6px;
-    padding: 6px 10px;
-    font-size: 18px;
-    cursor: pointer;
-    color: #0f172a;
-    line-height: 1;
-
-    @media (max-width: 900px) {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
   }
 
   .headerTitle {
+    order: 1;
     font-size: 22px;
     font-weight: 700;
     color: #0f172a;
     margin: 0;
-
-    @media (max-width: 768px) {
-      font-size: 18px;
-    }
   }
 
   .headerUser {
     display: flex;
     align-items: center;
     gap: 16px;
-
-    @media (max-width: 768px) {
-      gap: 10px;
-    }
 
     .userInfo {
       text-align: right;
@@ -216,10 +189,6 @@
       .userRole {
         font-size: 12px;
         color: #64748b;
-
-        @media (max-width: 600px) {
-          display: none;
-        }
       }
     }
 
@@ -235,13 +204,74 @@
       transition: background 0.2s ease;
       white-space: nowrap;
 
-      @media (max-width: 600px) {
-        padding: 6px 10px;
-        font-size: 12px;
-      }
-
       &:hover {
         background: #fecaca;
+      }
+    }
+  }
+
+  @media (max-width: 900px) {
+    height: auto;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px 16px;
+    gap: 8px;
+
+    .headerTop {
+      order: 1;
+      width: 100%;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .headerBrandMobile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      .mobileTitle {
+        font-size: 16px;
+        font-weight: 700;
+        color: #0f172a;
+      }
+    }
+
+    .btnMenuToggle {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      padding: 6px 10px;
+      font-size: 18px;
+      cursor: pointer;
+      color: #0f172a;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .headerTitle {
+      order: 2;
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0;
+      padding-top: 4px;
+      border-top: 1px solid #f1f5f9;
+    }
+
+    .headerUser {
+      gap: 8px;
+
+      .userInfo {
+        .userRole {
+          display: none;
+        }
+      }
+
+      .btnLogout {
+        padding: 5px 10px;
+        font-size: 12px;
       }
     }
   }

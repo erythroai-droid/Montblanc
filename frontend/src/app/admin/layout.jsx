@@ -126,31 +126,35 @@ export default function AdminLayout({ children }) {
 
       <div className={styles.adminMain}>
         <header className={styles.adminHeader}>
-          <div className={styles.headerLeft}>
-            <button
-              className={styles.btnMenuToggle}
-              onClick={() => setSidebarOpen(!sidebarOpen)}
-              aria-label="Toggle navigation menu"
-            >
-              ☰
-            </button>
-            <h1 className={styles.headerTitle}>
-              {pathname === "/admin" && "Dashboard"}
-              {pathname === "/admin/orders" && "Orders Management"}
-              {pathname.startsWith("/admin/products") && "Products Management"}
-              {pathname === "/admin/categories" && "Categories Management"}
-            </h1>
+          <div className={styles.headerTop}>
+            <div className={styles.headerBrandMobile}>
+              <button
+                className={styles.btnMenuToggle}
+                onClick={() => setSidebarOpen(!sidebarOpen)}
+                aria-label="Toggle navigation menu"
+              >
+                ☰
+              </button>
+              <span className={styles.mobileTitle}>Mont Blanc</span>
+            </div>
+
+            <div className={styles.headerUser}>
+              <div className={styles.userInfo}>
+                <div className={styles.userName}>{stats?.userName || "Administrator"}</div>
+                <div className={styles.userRole}>{stats?.isAdmin ? "Super Admin" : "User"}</div>
+              </div>
+              <button onClick={handleLogout} className={styles.btnLogout}>
+                Logout
+              </button>
+            </div>
           </div>
 
-          <div className={styles.headerUser}>
-            <div className={styles.userInfo}>
-              <div className={styles.userName}>{stats?.userName || "Administrator"}</div>
-              <div className={styles.userRole}>{stats?.isAdmin ? "Super Admin" : "User"}</div>
-            </div>
-            <button onClick={handleLogout} className={styles.btnLogout}>
-              Logout
-            </button>
-          </div>
+          <h1 className={styles.headerTitle}>
+            {pathname === "/admin" && "Dashboard"}
+            {pathname === "/admin/orders" && "Orders Management"}
+            {pathname.startsWith("/admin/products") && "Products Management"}
+            {pathname === "/admin/categories" && "Categories Management"}
+          </h1>
         </header>
 
         <main className={styles.adminContent}>
