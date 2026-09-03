@@ -39,10 +39,10 @@
     width: 36px;
     height: 28px;
     border-radius: 4px;
-    background: #f5f5f5;
-    border: 1px solid rgba(0, 0, 0, 0.15);
+    background: var(--app-input-bg);
+    border: 1px solid var(--app-border);
     margin: 0 8px;
-    color: var(--color-dark);
+    color: var(--app-text);
     text-align: center;
     font-size: 13px;
     font-weight: 600;

@@ -7,7 +7,7 @@
     auto,
     40px 20px 60px 20px,
     0 auto,
-    url("/images/bg_fon1.jpg") repeat
+    var(--app-bg)
   );
   box-sizing: border-box;
   min-height: 600px;
@@ -130,14 +130,18 @@
 }
 
 .orderDelivery {
-  @include block-set(100%, auto, 30px, 10px auto, var(--color-white));
+  width: 100%;
+  height: auto;
+  padding: 30px;
+  margin: 10px auto;
+  background: var(--app-surface);
   box-sizing: border-box;
   border-radius: 8px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--app-border);
 
   h4 {
     margin: 0 0 20px 0;
-    color: var(--color-dark);
+    color: var(--app-text);
   }
 
   .radioGroup {
@@ -170,8 +174,8 @@
     .checkmark {
       font-size: 13px;
       font-weight: 500;
-      color: var(--color-dark);
-      background: #f1f5f9;
+      color: var(--app-text);
+      background: var(--app-input-bg);
       text-align: center;
       display: flex;
       justify-content: center;
@@ -179,11 +183,11 @@
       padding: 12px 24px;
       border-radius: 50px;
       transition: all 0.2s ease;
-      border: 1px solid #e2e8f0;
+      border: 1px solid var(--app-border);
     }
 
     &:hover input ~ .checkmark {
-      background-color: #e2e8f0;
+      border-color: var(--color-green);
     }
 
     input:checked ~ .checkmark {
@@ -195,14 +199,18 @@
 }
 
 .orderInfo {
-  @include block-set(100%, auto, 30px, 10px auto, var(--color-white));
+  width: 100%;
+  height: auto;
+  padding: 30px;
+  margin: 10px auto;
+  background: var(--app-surface);
   box-sizing: border-box;
   border-radius: 8px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--app-border);
 
   h4 {
     margin: 0 0 20px 0;
-    color: var(--color-dark);
+    color: var(--app-text);
   }
 
   form {
@@ -213,7 +221,7 @@
     label {
       font-size: 14px;
       font-weight: 600;
-      color: var(--color-dark);
+      color: var(--app-text);
       margin-bottom: -6px;
 
       .red {
@@ -224,13 +232,13 @@
 
     input {
       border-radius: 6px;
-      border: 1px solid #cbd5e1;
+      border: 1px solid var(--app-border);
       height: 40px;
       padding: 0 14px;
       margin: 0;
       font-size: 14px;
-      color: var(--color-dark);
-      background: var(--color-white);
+      color: var(--app-text);
+      background: var(--app-input-bg);
       outline: none;
 
       &:focus {
@@ -240,13 +248,13 @@
 
     textarea {
       padding: 10px 14px;
-      border: 1px solid #cbd5e1;
+      border: 1px solid var(--app-border);
       border-radius: 6px;
       min-height: 80px;
-      background: var(--color-white);
+      background: var(--app-input-bg);
       font-size: 14px;
       font-family: inherit;
-      color: var(--color-dark);
+      color: var(--app-text);
       outline: none;
       resize: vertical;
 
@@ -264,14 +272,18 @@
 }
 
 .orderPayment {
-  @include block-set(100%, auto, 30px, 10px auto, var(--color-white));
+  width: 100%;
+  height: auto;
+  padding: 30px;
+  margin: 10px auto;
+  background: var(--app-surface);
   box-sizing: border-box;
   border-radius: 8px;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--app-border);
 
   h4 {
     margin: 0 0 20px 0;
-    color: var(--color-dark);
+    color: var(--app-text);
   }
 
   .container {
@@ -286,7 +298,7 @@
     cursor: pointer;
     font-size: 14px;
     font-weight: 500;
-    color: var(--color-dark);
+    color: var(--app-text);
     gap: 10px;
     user-select: none;
 

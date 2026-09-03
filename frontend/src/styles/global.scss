@@ -28,9 +28,6 @@
 }
 
 html[data-theme="dark"] {
-  --color-white: #2c2c2c;
-  --color-dark: #e9eef5;
-  --color-black: #ffffff;
   --app-bg: #232323;
   --app-surface: #2c2c2c;
   --app-text: #e9eef5;
@@ -39,27 +36,7 @@ html[data-theme="dark"] {
   --app-input-bg: rgba(255, 255, 255, 0.08);
   --app-shadow: 0 8px 20px rgba(0, 0, 0, 0.55);
   --app-background-03: #232323;
-
-  background-color: var(--app-bg) !important;
-  color: var(--app-text) !important;
   color-scheme: dark;
-
-  body {
-    background-color: var(--app-bg) !important;
-    color: var(--app-text) !important;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    color: var(--app-text) !important;
-  }
-
-  input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]):not([type="button"]),
-  textarea,
-  select {
-    background-color: var(--app-input-bg) !important;
-    color: var(--app-text) !important;
-    border-color: var(--app-border) !important;
-  }
 }
 
 html {
@@ -95,22 +72,22 @@ body {
 }
 
 h1 {
-  @include font-face(math.div($font-size-header-first, 10) * 1rem, 900, var(--app-text));
+  @include font-face(math.div($font-size-header-first, 10) * 1rem, 900, inherit);
   text-transform: uppercase;
 }
 
 h2 {
-  @include font-face(math.div($font-size-header-second, 10) * 1rem, 700, var(--app-text));
+  @include font-face(math.div($font-size-header-second, 10) * 1rem, 700, inherit);
   text-transform: uppercase;
 }
 
 h3 {
-  @include font-face(math.div($font-size-header-third, 10) * 1rem, 700, var(--app-text));
+  @include font-face(math.div($font-size-header-third, 10) * 1rem, 700, inherit);
   text-transform: uppercase;
 }
 
 h4 {
-  @include font-face(math.div($font-size-header-fourth, 10) * 1rem, 500, var(--app-text));
+  @include font-face(math.div($font-size-header-fourth, 10) * 1rem, 500, inherit);
   text-transform: uppercase;
 }
 

@@ -7,7 +7,7 @@
     auto,
     50px 20px,
     0 auto,
-    url("/images/bg_fon1.jpg") repeat
+    var(--app-bg)
   );
   box-sizing: border-box;
   min-height: 500px;
