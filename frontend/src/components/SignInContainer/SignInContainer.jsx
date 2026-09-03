@@ -126,7 +126,7 @@ const SignInContainer = () => {
 							aria-label="Sign in with Google"
 						>
 							<img
-								src="/images/signin-assets/Web (mobile + desktop)/svg/neutral/web_neutral_rd_SI.svg"
+								src="/images/signin-assets/google_signin.svg"
 								alt="Sign in with Google"
 								className={styles.oauthImg}
 							/>

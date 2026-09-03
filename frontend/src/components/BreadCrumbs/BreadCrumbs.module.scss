@@ -3,7 +3,7 @@
 
 .breadcrumbs {
   padding: 20px 20px;
-  background: #F6F6F6;
+  background: var(--app-bg);
   display: flex;
   justify-content: center;
 }
@@ -32,7 +32,7 @@
 }
 
 .link {
-  color: var(--color-dark);
+  color: var(--app-text);
   text-decoration: none;
   transition: color 0.2s;
 

@@ -5,9 +5,12 @@
   height: 38px;
   width: 100%;
   max-width: 320px;
-  @include font-face($font-size-regular * 1px, 400, var(--color-dark));
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--app-text);
+  line-height: 21px;
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
   border-radius: 6px;
   padding: 0 12px;
   margin-top: 10px;

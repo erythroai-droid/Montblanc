@@ -4,33 +4,47 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuth } from "../../context/AuthContext/AuthContext.jsx";
+import api from "../../api/api.js";
 import styles from "./admin.module.scss";
 
 export default function AdminLayout({ children }) {
   const pathname = usePathname();
   const router = useRouter();
-  const { logout } = useAuth();
+  const { user, loading: authLoading, logout } = useAuth();
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function checkAuth() {
+    let isMounted = true;
+
+    async function checkAdminAccess() {
+      if (authLoading) return;
+
       try {
         const res = await api.admin.getStats();
-        if (!res || !res.authenticated) {
-          router.push("/sign-in");
+        if (!isMounted) return;
+
+        if (res && res.authenticated && res.isAdmin) {
+          setStats(res);
+          setLoading(false);
           return;
         }
-        setStats(res);
+
+        // If not authenticated as admin
+        router.replace("/sign-in");
       } catch (err) {
-        console.error("Auth check failed:", err);
-        router.push("/sign-in");
-      } finally {
-        setLoading(false);
+        if (!isMounted) return;
+        console.warn("Admin access check failed:", err);
+        router.replace("/sign-in");
       }
     }
-    checkAuth();
-  }, [router]);
+
+    checkAdminAccess();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [authLoading, router]);
 
   const handleLogout = async () => {
     try {

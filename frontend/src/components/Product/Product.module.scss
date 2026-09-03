@@ -4,8 +4,8 @@
 .item {
   width: 270px;
   padding: 30px;
-  background: var(--color-white);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -13,7 +13,7 @@
   row-gap: 20px;
   box-sizing: border-box;
   list-style: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
 
   &:hover {
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
@@ -52,7 +52,7 @@
   .extra {
     font-size: 28px;
     font-weight: 600;
-    color: var(--color-dark);
+    color: var(--app-text);
     margin: 0;
   }
 
@@ -80,7 +80,10 @@
 }
 
 .itemDescription {
-  @include font-face($font-size-regular * 1px, 400, var(--color-dark));
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--app-text);
+  line-height: 21px;
   width: 100%;
   text-align: center;
   margin: 0;

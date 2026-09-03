@@ -2,7 +2,11 @@
 @use '../../styles/mixins' as *;
 
 .section {
-  @include block-set(100%, auto, 0 0 50px 0, 0 auto, #F6F6F6);
+  width: 100%;
+  height: auto;
+  padding: 0 0 50px 0;
+  margin: 0 auto;
+  background: var(--app-bg);
   display: flex;
   justify-content: center;
   min-height: 500px;
@@ -33,7 +37,7 @@
   min-width: 180px;
 
   h3 {
-    color: var(--color-dark);
+    color: var(--app-text);
     margin: 0;
     text-align: left;
     font-size: 2rem;

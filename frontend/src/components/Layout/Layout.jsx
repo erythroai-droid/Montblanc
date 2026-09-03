@@ -28,7 +28,7 @@ const Layout = ({ children }) => {
 	}, [dispatch, isAdminPage]);
 
 	if (isAdminPage) {
-		return <main>{children}</main>;
+		return <>{children}</>;
 	}
 
 	return (

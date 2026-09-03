@@ -2,27 +2,28 @@
 @use '../../../styles/mixins' as *;
 
 .section {
-  @include block-set(
-    100%,
-    auto,
-    50px 0 50px 0,
-    0 auto,
-    url("/images/bg_fon_2.png") 0 100% no-repeat
-  );
-  @include font-face($font-size-regular * 1px, 300, var(--color-dark));
+  width: 100%;
+  height: auto;
+  padding: 50px 0 50px 0;
+  margin: 0 auto;
+  background: var(--app-background-03);
+  color: var(--app-text);
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 21px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
 
   @media (max-width: $width-desktop) {
-    background: #f6f6f6 url("/images/bg_fon_2.png") 0 100% no-repeat !important;
+    background: var(--app-background-03) !important;
   }
 
   h2 {
     margin: 0 0 30px 0;
     text-align: center;
-    color: var(--color-dark);
+    color: var(--app-text);
   }
 }
 
