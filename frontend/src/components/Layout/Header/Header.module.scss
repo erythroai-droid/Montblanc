@@ -216,9 +216,12 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+    align-items: center;
     position: relative;
     width: 100%;
-    margin-top: 10px;
+    margin-top: 15px;
+    padding: 0 10px;
+    box-sizing: border-box;
   }
 }
 
@@ -229,6 +232,25 @@
   @media (max-width: $width-mobile-until) {
     display: flex;
     justify-content: center;
+    width: 100%;
+  }
+}
+
+.dropCartContainer {
+  position: relative;
+  display: flex;
+  z-index: 150;
+
+  @media (max-width: $width-mobile-until) {
+    position: relative !important;
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center;
+    margin-top: 12px;
+  }
+
+  &.open {
+    display: block;
   }
 }
 

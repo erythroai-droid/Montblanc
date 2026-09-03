@@ -2,7 +2,7 @@
 
 import Logo from "../../../assets/images/Logo.png";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import PhoneIcon from "../../../icons/PhoneIcon/PhoneIcon.jsx";
 import ClockIcon from "../../../icons/ClockIcon/ClockIcon.jsx";
 import CartIcon from "../../../icons/CartIcon/CartIcon.jsx";
@@ -14,7 +14,7 @@ import {
 	selectIsCartOpen
 } from "../../../redux/slices/cartSlice/cartSelectors.js";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleCartModal } from "../../../redux/slices/cartSlice/cartSlice.js";
+import { toggleCartModal, closeCartModal } from "../../../redux/slices/cartSlice/cartSlice.js";
 import ModalOverlay from "../../ModalOverlay/ModalOverlay.jsx";
 import { useIntl } from "react-intl";
 import FlagRu from "../../../icons/FlagRu/FlagRu.jsx";
@@ -46,6 +46,22 @@ const Header = () => {
 	const { user, logout } = useAuth();
 	const { theme, setTheme } = useTheme();
 	const [isOverlayOpen, setIsOverlayOpen] = useState(false);
+	const cartRef = useRef(null);
+
+	useEffect(() => {
+		if (!isModalOpen) return;
+		const handleClickOutside = (event) => {
+			if (cartRef.current && !cartRef.current.contains(event.target)) {
+				dispatch(closeCartModal());
+			}
+		};
+		document.addEventListener("mousedown", handleClickOutside);
+		document.addEventListener("touchstart", handleClickOutside);
+		return () => {
+			document.removeEventListener("mousedown", handleClickOutside);
+			document.removeEventListener("touchstart", handleClickOutside);
+		};
+	}, [isModalOpen, dispatch]);
 
 	const handleOpenOverlay = () => {
 		setIsOverlayOpen(!isOverlayOpen);
@@ -144,12 +160,14 @@ const Header = () => {
 						<p className={styles.time}>{intl.formatMessage({ id: "daily_from" })} 8.00 to 21.00</p>
 					</div>
 				</div>
-				<div className={styles.cartContainer}>
+				<div className={styles.cartContainer} ref={cartRef}>
 					<div className={styles.cart}>
 						<button
 							className={styles.cartButton}
 							data-cart-target="true"
 							onClick={() => dispatch(toggleCartModal())}
+							aria-expanded={isModalOpen}
+							aria-label={intl.formatMessage({ id: "cart" })}
 						>
 							<CartIcon {...cartStyle} />
 							<p>{intl.formatMessage({ id: "cart" })}</p>
@@ -160,13 +178,15 @@ const Header = () => {
 								{cartItems.length}
 							</p>
 						</button>
-						{isModalOpen && (
+					</div>
+					{isModalOpen && (
+						<div className={`${styles.dropCartContainer} ${styles.open}`}>
 							<ModalCart
 								cartItems={cartItems}
 								deleteFromCart={deleteFromCart}
 							/>
-						)}
-					</div>
+						</div>
+					)}
 				</div>
 			</div>
 		</header>
