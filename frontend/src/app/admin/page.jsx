@@ -91,38 +91,40 @@ export default function AdminDashboardPage() {
           {recentOrders.length === 0 ? (
             <p style={{ padding: "24px", color: "#64748b", margin: 0 }}>No orders yet.</p>
           ) : (
-            <table className={styles.adminTable}>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Customer</th>
-                  <th>Contact</th>
-                  <th>Delivery</th>
-                  <th>Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                {recentOrders.map((order) => (
-                  <tr key={order.id}>
-                    <td><strong>#{order.id}</strong></td>
-                    <td>
-                      <div><strong>{order.name}</strong></div>
-                      <div style={{ fontSize: "12px", color: "#64748b" }}>{order.address}</div>
-                    </td>
-                    <td>
-                      <div>{order.email}</div>
-                      <div style={{ fontSize: "12px", color: "#64748b" }}>{order.phone}</div>
-                    </td>
-                    <td>
-                      <span className={`${styles.badgeTag} ${styles.category}`}>{order.delivery}</span>
-                    </td>
-                    <td>
-                      <strong>{order.total} ₪</strong>
-                    </td>
+            <div className={styles.tableResponsive}>
+              <table className={styles.adminTable}>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Customer</th>
+                    <th>Contact</th>
+                    <th>Delivery</th>
+                    <th>Total</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {recentOrders.map((order) => (
+                    <tr key={order.id}>
+                      <td><strong>#{order.id}</strong></td>
+                      <td>
+                        <div><strong>{order.name}</strong></div>
+                        <div style={{ fontSize: "12px", color: "#64748b" }}>{order.address}</div>
+                      </td>
+                      <td>
+                        <div>{order.email}</div>
+                        <div style={{ fontSize: "12px", color: "#64748b" }}>{order.phone}</div>
+                      </td>
+                      <td>
+                        <span className={`${styles.badgeTag} ${styles.category}`}>{order.delivery}</span>
+                      </td>
+                      <td>
+                        <strong>{order.total} ₪</strong>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           )}
         </div>
       </div>

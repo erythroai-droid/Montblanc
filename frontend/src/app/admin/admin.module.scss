@@ -5,6 +5,23 @@
   background-color: #f4f6f9;
   font-family: var(--font-family-roboto, sans-serif);
   color: #333;
+  position: relative;
+}
+
+.sidebarBackdrop {
+  display: none;
+
+  @media (max-width: 900px) {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 490;
+    backdrop-filter: blur(2px);
+  }
 }
 
 .adminSidebar {
@@ -15,6 +32,22 @@
   flex-direction: column;
   flex-shrink: 0;
   box-shadow: 2px 0 8px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+  z-index: 500;
+
+  @media (max-width: 900px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    height: 100vh;
+    transform: translateX(-100%);
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.25);
+
+    &.sidebarOpen {
+      transform: translateX(0);
+    }
+  }
 
   .sidebarHeader {
     padding: 24px 20px;
@@ -39,6 +72,21 @@
       padding: 3px 8px;
       border-radius: 12px;
       text-transform: uppercase;
+    }
+
+    .btnCloseSidebar {
+      display: none;
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 22px;
+      cursor: pointer;
+      line-height: 1;
+      padding: 4px;
+
+      @media (max-width: 900px) {
+        display: block;
+      }
     }
   }
 
@@ -94,6 +142,7 @@
   flex-direction: column;
   min-width: 0;
   overflow-y: auto;
+  width: 100%;
 }
 
 .adminHeader {
@@ -104,19 +153,58 @@
   align-items: center;
   justify-content: space-between;
   padding: 0 32px;
+  gap: 16px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+
+  @media (max-width: 768px) {
+    height: auto;
+    min-height: 60px;
+    padding: 12px 16px;
+  }
+
+  .headerLeft {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .btnMenuToggle {
+    display: none;
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 18px;
+    cursor: pointer;
+    color: #0f172a;
+    line-height: 1;
+
+    @media (max-width: 900px) {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 
   .headerTitle {
     font-size: 22px;
     font-weight: 700;
     color: #0f172a;
     margin: 0;
+
+    @media (max-width: 768px) {
+      font-size: 18px;
+    }
   }
 
   .headerUser {
     display: flex;
     align-items: center;
     gap: 16px;
+
+    @media (max-width: 768px) {
+      gap: 10px;
+    }
 
     .userInfo {
       text-align: right;
@@ -128,6 +216,10 @@
       .userRole {
         font-size: 12px;
         color: #64748b;
+
+        @media (max-width: 600px) {
+          display: none;
+        }
       }
     }
 
@@ -141,6 +233,12 @@
       font-weight: 600;
       cursor: pointer;
       transition: background 0.2s ease;
+      white-space: nowrap;
+
+      @media (max-width: 600px) {
+        padding: 6px 10px;
+        font-size: 12px;
+      }
 
       &:hover {
         background: #fecaca;
@@ -152,6 +250,10 @@
 .adminContent {
   padding: 32px;
   flex-grow: 1;
+
+  @media (max-width: 768px) {
+    padding: 16px 12px;
+  }
 }
 
 /* Stats Cards */
@@ -160,6 +262,12 @@
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 24px;
   margin-bottom: 32px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+  }
 }
 
 .statCard {
@@ -172,6 +280,11 @@
   align-items: center;
   gap: 20px;
 
+  @media (max-width: 768px) {
+    padding: 16px 12px;
+    gap: 12px;
+  }
+
   .statIcon {
     width: 54px;
     height: 54px;
@@ -180,6 +293,13 @@
     align-items: center;
     justify-content: center;
     font-size: 24px;
+    flex-shrink: 0;
+
+    @media (max-width: 768px) {
+      width: 42px;
+      height: 42px;
+      font-size: 20px;
+    }
 
     &.green { background: #dcfce7; color: #16a34a; }
     &.blue { background: #dbeafe; color: #2563eb; }
@@ -193,6 +313,10 @@
       font-weight: 700;
       color: #0f172a;
       margin: 0 0 4px 0;
+
+      @media (max-width: 768px) {
+        font-size: 22px;
+      }
     }
     p {
       font-size: 13px;
@@ -201,6 +325,10 @@
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+
+      @media (max-width: 768px) {
+        font-size: 11px;
+      }
     }
   }
 }
@@ -220,6 +348,14 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+
+    @media (max-width: 768px) {
+      padding: 16px 14px;
+      flex-direction: column;
+      align-items: stretch;
+    }
 
     h3 {
       font-size: 18px;
@@ -227,10 +363,58 @@
       color: #0f172a;
       margin: 0;
     }
+
+    .cardHeaderActions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+
+      @media (max-width: 768px) {
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
   }
 
   .cardBody {
     padding: 24px;
+
+    @media (max-width: 768px) {
+      padding: 16px 12px;
+    }
+  }
+}
+
+.tableResponsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.searchBar {
+  padding: 8px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 13px;
+  width: 320px;
+  max-width: 100%;
+  box-sizing: border-box;
+
+  @media (max-width: 768px) {
+    width: 100% !important;
+  }
+}
+
+.categoriesGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    gap: 16px;
   }
 }
 
@@ -238,6 +422,7 @@
   width: 100%;
   border-collapse: collapse;
   text-align: left;
+  min-width: 600px;
 
   th {
     background-color: #f8fafc;
@@ -248,6 +433,12 @@
     letter-spacing: 0.5px;
     padding: 14px 18px;
     border-bottom: 1px solid #e2e8f0;
+    white-space: nowrap;
+
+    @media (max-width: 768px) {
+      padding: 10px 12px;
+      font-size: 11px;
+    }
   }
 
   td {
@@ -256,6 +447,11 @@
     color: #1e293b;
     border-bottom: 1px solid #f1f5f9;
     vertical-align: middle;
+
+    @media (max-width: 768px) {
+      padding: 12px 12px;
+      font-size: 13px;
+    }
   }
 
   tr:hover td {
@@ -276,6 +472,7 @@
     border-radius: 6px;
     font-size: 11px;
     font-weight: 600;
+    white-space: nowrap;
 
     &.special { background: #fee2e2; color: #dc2626; }
     &.discount { background: #fef3c7; color: #b45309; }
@@ -292,6 +489,7 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
+    white-space: nowrap;
 
     &:hover {
       background: #dc2626;
@@ -306,6 +504,7 @@
   flex-direction: column;
   gap: 20px;
   max-width: 640px;
+  width: 100%;
 
   .formGroup {
     display: flex;
@@ -330,6 +529,8 @@
       color: #0f172a;
       background-color: #fff;
       transition: border-color 0.2s;
+      width: 100%;
+      box-sizing: border-box;
 
       &:focus {
         outline: none;
@@ -348,6 +549,11 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px;
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
   }
 
   .checkboxGroup {
@@ -381,6 +587,11 @@
     transition: background 0.2s ease;
     align-self: flex-start;
 
+    @media (max-width: 600px) {
+      width: 100%;
+      text-align: center;
+    }
+
     &:hover {
       background-color: #3fa81f;
     }
@@ -410,6 +621,7 @@
 .btnPrimary {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   background-color: #46bb22;
   color: #fff;
@@ -419,6 +631,12 @@
   font-size: 13px;
   font-weight: 600;
   transition: background 0.2s;
+  white-space: nowrap;
+
+  @media (max-width: 600px) {
+    width: 100%;
+    box-sizing: border-box;
+  }
 
   &:hover {
     background-color: #3fa81f;

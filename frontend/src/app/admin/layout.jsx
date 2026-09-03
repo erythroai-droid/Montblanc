@@ -13,6 +13,11 @@ export default function AdminLayout({ children }) {
   const { user, loading: authLoading, logout } = useAuth();
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    setSidebarOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     let isMounted = true;
@@ -72,10 +77,24 @@ export default function AdminLayout({ children }) {
 
   return (
     <div className={styles.adminLayout}>
-      <aside className={styles.adminSidebar}>
+      {sidebarOpen && (
+        <div
+          className={styles.sidebarBackdrop}
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
+      <aside className={`${styles.adminSidebar} ${sidebarOpen ? styles.sidebarOpen : ""}`}>
         <div className={styles.sidebarHeader}>
           <h2>Mont Blanc</h2>
           <span className={styles.badge}>Admin</span>
+          <button
+            className={styles.btnCloseSidebar}
+            onClick={() => setSidebarOpen(false)}
+            aria-label="Close menu"
+          >
+            ✕
+          </button>
         </div>
 
         <nav className={styles.sidebarNav}>
@@ -84,7 +103,11 @@ export default function AdminLayout({ children }) {
               const isActive = pathname === item.href;
               return (
                 <li key={item.href}>
-                  <Link href={item.href} className={isActive ? styles.active : ""}>
+                  <Link
+                    href={item.href}
+                    className={isActive ? styles.active : ""}
+                    onClick={() => setSidebarOpen(false)}
+                  >
                     <span>{item.icon}</span>
                     <span>{item.label}</span>
                   </Link>
@@ -103,12 +126,21 @@ export default function AdminLayout({ children }) {
 
       <div className={styles.adminMain}>
         <header className={styles.adminHeader}>
-          <h1 className={styles.headerTitle}>
-            {pathname === "/admin" && "Dashboard"}
-            {pathname === "/admin/orders" && "Orders Management"}
-            {pathname.startsWith("/admin/products") && "Products Management"}
-            {pathname === "/admin/categories" && "Categories Management"}
-          </h1>
+          <div className={styles.headerLeft}>
+            <button
+              className={styles.btnMenuToggle}
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              aria-label="Toggle navigation menu"
+            >
+              ☰
+            </button>
+            <h1 className={styles.headerTitle}>
+              {pathname === "/admin" && "Dashboard"}
+              {pathname === "/admin/orders" && "Orders Management"}
+              {pathname.startsWith("/admin/products") && "Products Management"}
+              {pathname === "/admin/categories" && "Categories Management"}
+            </h1>
+          </div>
 
           <div className={styles.headerUser}>
             <div className={styles.userInfo}>

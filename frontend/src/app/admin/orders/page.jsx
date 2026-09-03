@@ -75,13 +75,7 @@ export default function AdminOrdersPage() {
             placeholder="Search by ID, customer name, email, or phone..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            style={{
-              padding: "8px 14px",
-              border: "1px solid #cbd5e1",
-              borderRadius: "6px",
-              width: "320px",
-              fontSize: "13px",
-            }}
+            className={styles.searchBar}
           />
         </div>
 
@@ -91,7 +85,8 @@ export default function AdminOrdersPage() {
           ) : filteredOrders.length === 0 ? (
             <p style={{ padding: "24px", color: "#64748b", margin: 0 }}>No orders found.</p>
           ) : (
-            <table className={styles.adminTable}>
+            <div className={styles.tableResponsive}>
+              <table className={styles.adminTable}>
               <thead>
                 <tr>
                   <th>ID</th>
@@ -203,6 +198,7 @@ export default function AdminOrdersPage() {
                 })}
               </tbody>
             </table>
+          </div>
           )}
         </div>
       </div>

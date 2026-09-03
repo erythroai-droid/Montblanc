@@ -90,7 +90,7 @@ export default function AdminCategoriesPage() {
         </div>
       )}
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px" }}>
+      <div className={styles.categoriesGrid}>
         <div className={styles.adminCard}>
           <div className={styles.cardHeader}>
             <h3>Add New Category</h3>
@@ -154,36 +154,38 @@ export default function AdminCategoriesPage() {
             ) : categories.length === 0 ? (
               <p style={{ padding: "24px", color: "#64748b", margin: 0 }}>No categories created yet.</p>
             ) : (
-              <table className={styles.adminTable}>
-                <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>English</th>
-                    <th>Russian</th>
-                    <th>Hebrew</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {categories.map((cat) => (
-                    <tr key={cat.id}>
-                      <td><strong>#{cat.id}</strong></td>
-                      <td><strong>{cat.name}</strong></td>
-                      <td>{cat.name_ru || "—"}</td>
-                      <td>{cat.name_he || "—"}</td>
-                      <td>
-                        <button
-                          onClick={() => handleDelete(cat.id, cat.name)}
-                          disabled={deletingId === cat.id}
-                          className={styles.btnDelete}
-                        >
-                          {deletingId === cat.id ? "..." : "Delete"}
-                        </button>
-                      </td>
+              <div className={styles.tableResponsive}>
+                <table className={styles.adminTable}>
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>English</th>
+                      <th>Russian</th>
+                      <th>Hebrew</th>
+                      <th>Actions</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {categories.map((cat) => (
+                      <tr key={cat.id}>
+                        <td><strong>#{cat.id}</strong></td>
+                        <td><strong>{cat.name}</strong></td>
+                        <td>{cat.name_ru || "—"}</td>
+                        <td>{cat.name_he || "—"}</td>
+                        <td>
+                          <button
+                            onClick={() => handleDelete(cat.id, cat.name)}
+                            disabled={deletingId === cat.id}
+                            className={styles.btnDelete}
+                          >
+                            {deletingId === cat.id ? "..." : "Delete"}
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
             )}
           </div>
         </div>

@@ -68,19 +68,13 @@ export default function AdminProductsPage() {
       <div className={styles.adminCard}>
         <div className={styles.cardHeader}>
           <h3>Products Catalog ({filteredProducts.length})</h3>
-          <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+          <div className={styles.cardHeaderActions}>
             <input
               type="text"
               placeholder="Search products by name or category..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              style={{
-                padding: "8px 14px",
-                border: "1px solid #cbd5e1",
-                borderRadius: "6px",
-                width: "280px",
-                fontSize: "13px",
-              }}
+              className={styles.searchBar}
             />
             <Link href="/admin/products/new" className={styles.btnPrimary}>
               <span>+</span> Add Product
@@ -94,7 +88,8 @@ export default function AdminProductsPage() {
           ) : filteredProducts.length === 0 ? (
             <p style={{ padding: "24px", color: "#64748b", margin: 0 }}>No products found.</p>
           ) : (
-            <table className={styles.adminTable}>
+            <div className={styles.tableResponsive}>
+              <table className={styles.adminTable}>
               <thead>
                 <tr>
                   <th>Image</th>
@@ -163,6 +158,7 @@ export default function AdminProductsPage() {
                 ))}
               </tbody>
             </table>
+          </div>
           )}
         </div>
       </div>
