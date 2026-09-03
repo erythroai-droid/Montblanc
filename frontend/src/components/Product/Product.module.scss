@@ -57,14 +57,17 @@
   }
 
   .offer {
-    font-size: 14px;
-    font-weight: 300;
-    text-decoration: line-through;
     margin: 6px 0 0 0;
-    color: #888;
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .oldPrice {
+    font-size: 14px;
+    font-weight: 300;
+    text-decoration: line-through;
+    color: #888;
   }
 
   .percent {
@@ -76,6 +79,7 @@
     padding: 2px 8px;
     font-size: 12px;
     font-weight: 600;
+    text-decoration: none;
   }
 }
 

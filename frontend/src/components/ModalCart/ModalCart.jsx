@@ -9,9 +9,9 @@ import { useIntl } from "react-intl";
 import styles from "./ModalCart.module.scss";
 
 const closeStyle = {
-	width: "16px",
-	height: "16px",
-	fill: "#999999",
+	width: "20px",
+	height: "20px",
+	fill: "#ffffff",
 };
 
 const ModalCart = ({ cartItems }) => {

@@ -18,8 +18,8 @@ const Advertising = () => {
 						height="200"
 						alt="Traditional Spices"
 					/>
-					<div className={`${styles.text} ${styles.paddingRight50}`}>
-						<p className={styles.paddingRight50}>{intl.formatMessage({ id: "traditionalSpices" })}</p>
+					<div className={styles.textLeft}>
+						<p>{intl.formatMessage({ id: "traditionalSpices" })}</p>
 						<p>{intl.formatMessage({ id: "discount" })}</p>
 					</div>
 				</div>
@@ -30,9 +30,9 @@ const Advertising = () => {
 						height="200"
 						alt="Italian Cheeses"
 					/>
-					<div className={`${styles.text} ${styles.paddingLeft50}`}>
+					<div className={styles.textRight}>
 						<p>{intl.formatMessage({ id: "italianCheeses" })}</p>
-						<p className={styles.paddingLeft50}>{intl.formatMessage({ id: "competitivePrices" })}</p>
+						<p>{intl.formatMessage({ id: "competitivePrices" })}</p>
 					</div>
 				</div>
 			</div>

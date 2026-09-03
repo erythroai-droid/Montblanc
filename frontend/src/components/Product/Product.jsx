@@ -47,7 +47,7 @@ const Product = memo(({ product, showDiscount = false }) => {
               <p className={styles.extra}>{discountedPrice}</p> ₪
             </div>
             <p className={styles.offer}>
-              {originalPrice}₪
+              <span className={styles.oldPrice}>{originalPrice}₪</span>
               <span className={styles.percent}>-{product.discount}%</span>
             </p>
           </>

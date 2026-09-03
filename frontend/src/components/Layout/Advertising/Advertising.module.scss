@@ -59,19 +59,28 @@
   }
 }
 
-.text {
+.textLeft {
   position: absolute;
-  width: 50%;
+  right: 15%;
+  max-width: 55%;
+  text-align: right;
   @include font-face(3rem, 600, var(--color-white));
   box-sizing: border-box;
   text-transform: uppercase;
 
   @media (max-width: $width-desktop) {
     font-size: 2rem !important;
+    right: 12%;
+  }
+
+  @media (max-width: $width-tablet) {
+    font-size: 1.5rem !important;
+    right: 10%;
   }
 
   @media (max-width: $width-mobile-until) {
-    width: auto !important;
+    right: 20px !important;
+    font-size: 1.2rem !important;
     line-height: normal !important;
   }
 
@@ -80,18 +89,32 @@
   }
 }
 
-.paddingRight50 {
-  padding-right: 50px;
+.textRight {
+  position: absolute;
+  left: 15%;
+  max-width: 55%;
+  text-align: left;
+  @include font-face(3rem, 600, var(--color-white));
+  box-sizing: border-box;
+  text-transform: uppercase;
 
-  @media (max-width: $width-mobile-until) {
-    padding-right: 10px !important;
+  @media (max-width: $width-desktop) {
+    font-size: 2rem !important;
+    left: 12%;
   }
-}
 
-.paddingLeft50 {
-  padding-left: 50px;
+  @media (max-width: $width-tablet) {
+    font-size: 1.5rem !important;
+    left: 10%;
+  }
 
   @media (max-width: $width-mobile-until) {
-    padding-left: 10px !important;
+    left: 20px !important;
+    font-size: 1.2rem !important;
+    line-height: normal !important;
+  }
+
+  p {
+    margin: 0;
   }
 }

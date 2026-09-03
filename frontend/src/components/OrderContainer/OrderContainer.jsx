@@ -14,9 +14,9 @@ import { useRouter } from "next/navigation";
 import styles from "./OrderContainer.module.scss";
 
 const closeStyle = {
-	width: "18px",
-	height: "18px",
-	fill: "#94a3b8",
+	width: "20px",
+	height: "20px",
+	fill: "#ffffff",
 };
 
 const OrderContainer = () => {
