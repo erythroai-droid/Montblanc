@@ -174,14 +174,16 @@ const Header = () => {
 							aria-expanded={isModalOpen}
 							aria-label={intl.formatMessage({ id: "cart" })}
 						>
-							<CartIcon {...cartStyle} />
+							<div className={styles.cartIconWrapper}>
+								<CartIcon {...cartStyle} />
+								<span
+									className={cartItems.length > 0 ? styles.amountItems : styles.amountItemsNull}
+									data-amount="true"
+								>
+									{cartItems.length}
+								</span>
+							</div>
 							<p>{intl.formatMessage({ id: "cart" })}</p>
-							<p
-								className={cartItems.length > 0 ? styles.amountItems : styles.amountItemsNull}
-								data-amount="true"
-							>
-								{cartItems.length}
-							</p>
 						</button>
 					</div>
 					{isModalOpen && (

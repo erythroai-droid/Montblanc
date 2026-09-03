@@ -28,10 +28,12 @@ const ModalCart = ({ cartItems }) => {
 	return (
 		<div className={styles.dropCart}>
 			<div className={styles.dropCartInner}>
-				<p className={styles.cartHeader}>{intl.formatMessage({ id: "yourOrder" })}</p>
-				<p className={styles.cartAmount}>
-					<span>{total.toFixed(2)}</span> ₪
-				</p>
+				<div className={styles.orderInfo}>
+					<p className={styles.cartHeader}>{intl.formatMessage({ id: "yourOrder" })}</p>
+					<p className={styles.cartAmount}>
+						<span>{total.toFixed(2)}</span> ₪
+					</p>
+				</div>
 			</div>
 			<div className={styles.cartItemContainer} data-items>
 				{cartItems.length === 0 ? (
