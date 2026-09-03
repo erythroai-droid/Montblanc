@@ -227,26 +227,29 @@
 
 .cart {
   position: relative;
-  z-index: 100;
+  z-index: 210;
 
   @media (max-width: $width-mobile-until) {
     display: flex;
     justify-content: center;
     width: 100%;
+    position: relative;
+    z-index: 210;
   }
 }
 
 .dropCartContainer {
   position: relative;
   display: flex;
-  z-index: 150;
+  z-index: 100;
 
   @media (max-width: $width-mobile-until) {
     position: relative !important;
     width: 100% !important;
     display: flex !important;
     justify-content: center;
-    margin-top: 12px;
+    margin-top: -20px;
+    z-index: 100;
   }
 
   &.open {
@@ -270,11 +273,16 @@
   text-transform: uppercase;
   cursor: pointer;
   position: relative;
-  z-index: 100;
-  transition: background 0.3s ease;
+  z-index: 220;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: background 0.3s ease, transform 0.1s ease;
 
   &:hover {
     background-color: var(--color-green-hover);
+  }
+
+  &:active {
+    transform: scale(0.98);
   }
 
   p {

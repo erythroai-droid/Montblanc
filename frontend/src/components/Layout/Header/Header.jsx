@@ -71,6 +71,11 @@ const Header = () => {
 		setIsOverlayOpen(false);
 	};
 
+	const handleCartClick = (e) => {
+		e.stopPropagation();
+		dispatch(toggleCartModal());
+	};
+
 	return (
 		<header className={styles.header}>
 			<div className={styles.inner}>
@@ -165,7 +170,7 @@ const Header = () => {
 						<button
 							className={styles.cartButton}
 							data-cart-target="true"
-							onClick={() => dispatch(toggleCartModal())}
+							onClick={handleCartClick}
 							aria-expanded={isModalOpen}
 							aria-label={intl.formatMessage({ id: "cart" })}
 						>

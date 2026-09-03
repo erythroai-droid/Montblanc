@@ -7,7 +7,9 @@
   right: -10px;
   min-width: 450px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-  z-index: 200;
+  z-index: 100;
+  border-radius: 8px;
+  overflow: hidden;
 
   @media (max-width: $width-mobile-until) {
     position: relative !important;
@@ -22,6 +24,7 @@
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    z-index: 100;
   }
 
   p {
@@ -31,20 +34,33 @@
 }
 
 .dropCartInner {
-  padding: 15px 20px;
+  padding: 14px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-sizing: border-box;
+  background: var(--color-dark);
+
+  @media (max-width: $width-mobile-until) {
+    padding: 14px 16px;
+    min-height: 52px;
+  }
 
   .cartHeader {
     color: var(--color-white);
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: 600;
     text-transform: uppercase;
+    text-align: left;
+    margin: 0;
+    flex-shrink: 0;
   }
 
   .cartAmount {
     @include font-face($font-size-header-fourth * 1px, 600, var(--color-beige));
+    text-align: right;
+    margin: 0;
+    flex-shrink: 0;
   }
 }
 
