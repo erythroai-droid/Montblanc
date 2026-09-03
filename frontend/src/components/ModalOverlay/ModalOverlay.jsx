@@ -1,9 +1,12 @@
 "use client";
 
 import React, { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Close from "../../icons/Close/Close.jsx";
 import { useIntl } from "react-intl";
 import { API_BASE_URL } from "../../api/api.js";
+import { useAuth } from "../../context/AuthContext/AuthContext.jsx";
 import styles from "./ModalOverlay.module.scss";
 
 const closeStyle = {
@@ -14,6 +17,8 @@ const closeStyle = {
 
 const ModalOverlay = ({ isOverlayOpen, onCloseOverlay }) => {
 	const intl = useIntl();
+	const router = useRouter();
+	const { login } = useAuth();
 	const [formData, setFormData] = useState({
 		login: '',
 		password: ''
@@ -26,7 +31,32 @@ const ModalOverlay = ({ isOverlayOpen, onCloseOverlay }) => {
 		onCloseOverlay();
 	};
 
-	const loginActionUrl = `${API_BASE_URL}/login`;
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		if (!formData.login.trim() || !formData.password) {
+			setError(intl.formatMessage({ id: "login_error" }));
+			return;
+		}
+
+		setLoading(true);
+		setError('');
+
+		try {
+			const result = await login(formData);
+			if (result.success) {
+				onCloseOverlay();
+				if (result.user?.isAdmin) {
+					router.push("/admin");
+				}
+			} else {
+				setError(result.message || intl.formatMessage({ id: "login_error" }));
+			}
+		} catch (err) {
+			setError(err.message || intl.formatMessage({ id: "login_error" }));
+		} finally {
+			setLoading(false);
+		}
+	};
 
 	return (
 		<div className={styles.overlay} data-modal-autorization="">
@@ -39,7 +69,7 @@ const ModalOverlay = ({ isOverlayOpen, onCloseOverlay }) => {
 						</button>
 					</div>
 					<div className={styles.content}>
-						<form action={loginActionUrl} method="POST">
+						<form onSubmit={handleSubmit}>
 							<input
 								type="text"
 								placeholder={intl.formatMessage({ id: "login" })}
@@ -48,6 +78,7 @@ const ModalOverlay = ({ isOverlayOpen, onCloseOverlay }) => {
 								minLength={3}
 								value={formData.login}
 								onChange={(e) => setFormData({ ...formData, login: e.target.value })}
+								disabled={loading}
 							/>
 							<input
 								type="password"
@@ -57,13 +88,21 @@ const ModalOverlay = ({ isOverlayOpen, onCloseOverlay }) => {
 								minLength={3}
 								value={formData.password}
 								onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+								disabled={loading}
 							/>
 							<button type="submit" disabled={loading}>
 								{loading ? "..." : intl.formatMessage({ id: "submit" })}
 							</button>
 						</form>
 						
-						{error && <p style={{ color: "red", marginTop: 8 }}>{error}</p>}
+						{error && <p style={{ color: "#ef4444", fontSize: "13px", marginTop: "10px" }}>{error}</p>}
+
+						<p style={{ marginTop: "14px", fontSize: "13px", color: "#666" }}>
+							{intl.formatMessage({ id: "no_account" })}{" "}
+							<Link href="/sign-up" onClick={handleClose} style={{ color: "var(--color-green)", fontWeight: "600" }}>
+								{intl.formatMessage({ id: "sign_up" })}
+							</Link>
+						</p>
 
 						<div className={styles.oauthSection}>
 							<p>Or sign in with</p>

@@ -126,6 +126,16 @@
   }
 }
 
+.userNameBadge {
+  font-family: var(--font-family-roboto);
+  @include font-face($font-size-regular * 1px, 500, var(--color-white));
+  white-space: nowrap;
+  padding: 0 5px;
+  text-transform: none;
+  display: flex;
+  align-items: center;
+}
+
 .contact {
   white-space: nowrap;
   @include font-face($font-size-regular * 1px, 300, var(--color-white));

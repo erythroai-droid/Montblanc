@@ -1,8 +1,7 @@
 import axios from "axios";
 
 const API_BASE_URL = (
-	process.env.NEXT_PUBLIC_API_URL ||
-	(process.env.NODE_ENV === "production" ? "/backend-api" : "http://localhost:8080")
+	process.env.NEXT_PUBLIC_API_URL || "/backend-api"
 ).replace(/\/$/, "");
 
 const httpRequest = async (method, url, data, config = {}) => {

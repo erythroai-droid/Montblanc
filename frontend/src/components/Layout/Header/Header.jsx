@@ -19,6 +19,7 @@ import ModalOverlay from "../../ModalOverlay/ModalOverlay.jsx";
 import { useIntl } from "react-intl";
 import FlagRu from "../../../icons/FlagRu/FlagRu.jsx";
 import FlagEn from "../../../icons/FlagEn/FlagEn.jsx";
+import { useAuth } from "../../../context/AuthContext/AuthContext.jsx";
 import styles from "./Header.module.scss";
 
 const iconStyle = {
@@ -40,6 +41,7 @@ const Header = () => {
 	const cartItems = useSelector(selectCartItems);
 	const isModalOpen = useSelector(selectIsCartOpen);
 	const { locale, setLocale } = useLanguage();
+	const { user, logout } = useAuth();
 	const [isOverlayOpen, setIsOverlayOpen] = useState(false);
 
 	const handleOpenOverlay = () => {
@@ -67,20 +69,45 @@ const Header = () => {
 				</Link>
 				<div className={styles.menu}>
 					<ul>
-						<li>
-							<button
-								className={styles.headerButton}
-								onClick={handleOpenOverlay}
-							>
-								{intl.formatMessage({ id: "sign_in" })}
-							</button>
-							{isOverlayOpen && (
-								<ModalOverlay
-									isOverlayOpen={isOverlayOpen}
-									onCloseOverlay={handleCloseModal}
-								/>
-							)}
-						</li>
+						{user && user.isAuth ? (
+							<>
+								{user.isAdmin && (
+									<li>
+										<Link href="/admin" className={styles.headerButton}>
+											{intl.formatMessage({ id: "admin_panel" })}
+										</Link>
+									</li>
+								)}
+								<li>
+									<span className={styles.userNameBadge}>
+										{user.userName}
+									</span>
+								</li>
+								<li>
+									<button
+										className={styles.headerButton}
+										onClick={logout}
+									>
+										{intl.formatMessage({ id: "logout" })}
+									</button>
+								</li>
+							</>
+						) : (
+							<li>
+								<button
+									className={styles.headerButton}
+									onClick={handleOpenOverlay}
+								>
+									{intl.formatMessage({ id: "sign_in" })}
+								</button>
+								{isOverlayOpen && (
+									<ModalOverlay
+										isOverlayOpen={isOverlayOpen}
+										onCloseOverlay={handleCloseModal}
+									/>
+								)}
+							</li>
+						)}
 
 						<li
 							className={`${styles.menuItem} ${locale === "en" ? styles.active : ""}`}

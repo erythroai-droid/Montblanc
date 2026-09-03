@@ -1,22 +1,21 @@
 [
   {
     "id": 1,
-    "src": "images/slides/slide_1.webp",
+    "src": "/images/slides/slide_1.jpg",
     "title": "Sicilian cheeses",
     "price": "160.00",
     "description": "Lorem Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas."
-
   },
   {
     "id": 2,
-    "src": "images/slides/slide_2.webp",
+    "src": "/images/slides/slide_2.jpg",
     "title": "Italian Prosciutto",
     "price": "120.00",
     "description": "Lorem Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas."
   },
   {
     "id": 3,
-    "src": "images/slides/slide_3.webp",
+    "src": "/images/slides/slide_3.jpg",
     "title": "Italian Pasta",
     "price": "40.00",
     "description": "Lorem Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas."

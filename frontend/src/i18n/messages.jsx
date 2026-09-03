@@ -61,11 +61,17 @@ const messages = {
 		invalidEmail: "Invalid email format",
 		inputAddress: "Please, input adress",
 		inputPhone: "Please, input phone",
-		shortPhone: "Phone must be 10 digits",
 		cartEmpty: "Your cart is empty",
-
-
-
+		sign_up: "Sign up",
+		logout: "Log out",
+		admin_panel: "Admin Panel",
+		no_account: "Don't have an account?",
+		have_account: "Already have an account?",
+		confirm_password: "Confirm password",
+		passwords_mismatch: "Passwords do not match",
+		registration_success: "Registration successful! You can now sign in.",
+		login_error: "Invalid login or password",
+		registration_error: "Registration failed. Please try again.",
 	},
 	ru: {
 		noSpecialOffers: "Нет специальных предложений",
@@ -131,6 +137,16 @@ const messages = {
 		inputPhone: "Пожалуйста, введите телефон",
 		shortPhone: "Телефон должен быть 10 цифр",
 		cartEmpty: "Ваша корзина пуста",
+		sign_up: "Регистрация",
+		logout: "Выйти",
+		admin_panel: "Панель управления",
+		no_account: "Нет аккаунта?",
+		have_account: "Уже есть аккаунт?",
+		confirm_password: "Подтвердите пароль",
+		passwords_mismatch: "Пароли не совпадают",
+		registration_success: "Регистрация успешна! Теперь вы можете войти.",
+		login_error: "Неверный логин или пароль",
+		registration_error: "Ошибка регистрации. Попробуйте снова.",
 	},
 };
 export default  messages;

@@ -3,12 +3,13 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import api from "../../api/api.js";
+import { useAuth } from "../../context/AuthContext/AuthContext.jsx";
 import styles from "./admin.module.scss";
 
 export default function AdminLayout({ children }) {
   const pathname = usePathname();
   const router = useRouter();
+  const { logout } = useAuth();
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -33,7 +34,7 @@ export default function AdminLayout({ children }) {
 
   const handleLogout = async () => {
     try {
-      await api.auth.logout();
+      await logout();
     } catch (e) {
       console.error(e);
     }
