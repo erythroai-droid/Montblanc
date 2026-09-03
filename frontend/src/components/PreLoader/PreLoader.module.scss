@@ -1,3 +1,5 @@
+@use '../../styles/variables' as *;
+
 .loaderArea {
   position: fixed;
   top: 0;
@@ -6,9 +8,10 @@
   height: 100%;
   background: #000000;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 10000;
   transition: all 0.5s ease;
   opacity: 1;
 
@@ -28,8 +31,12 @@
 }
 
 @keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .preLogo {
@@ -42,6 +49,37 @@
 }
 
 @keyframes logoFadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.preloaderDemoText {
+  position: relative;
+  z-index: 1;
+  margin-top: 20px;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--color-white);
+  line-height: 2.1rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-align: center;
+  opacity: 0;
+  animation: demoTextFadeIn 1s ease forwards;
+  animation-delay: 0.8s;
+}
+
+@keyframes demoTextFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

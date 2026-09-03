@@ -10,6 +10,7 @@ import Support from './Support/Support.jsx';
 import Footer from './Footer/Footer.jsx';
 import SliderVanilla from "./SliderVanilla/SliderVanila.jsx";
 import BreadCrumbs from "../BreadCrumbs/BreadCrumbs.jsx";
+import Preloader from "../PreLoader/PreLoader.jsx";
 import { useDispatch } from "react-redux";
 import { fetchCategories } from "../../redux/slices/categoriesSlice/categoriesSlice.js";
 import { initCart } from "../../redux/slices/cartSlice/cartSlice.js";
@@ -33,6 +34,7 @@ const Layout = ({ children }) => {
 
 	return (
 		<div>
+			<Preloader />
 			<Header />
 			<NavBar />
 			{isHomePage && <SliderVanilla />}

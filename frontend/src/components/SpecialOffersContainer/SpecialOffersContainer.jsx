@@ -10,7 +10,6 @@ import {
 } from "../../redux/slices/productsSlice/productsSelectors.js";
 import { fetchProductsSpecials } from "../../redux/slices/productsSlice/productsSlice.js";
 import { useIntl } from "react-intl";
-import Preloader from "../../components/PreLoader/PreLoader.jsx";
 import styles from "./SpecialOffersContainer.module.scss";
 
 const SpecialOffersContainer = () => {
@@ -36,7 +35,7 @@ const SpecialOffersContainer = () => {
 		<section className={styles.section}>
 			<h2>{intl.formatMessage({ id: "allOffers" })}</h2>
 			{specialStatus === "loading" ? (
-				<Preloader />
+				<p className={styles.statusMessage}>{intl.formatMessage({ id: "loading" })}</p>
 			) : error ? (
 				<p className={styles.statusMessage}>{intl.formatMessage({ id: "error" })}: {error}. {intl.formatMessage({ id: "tryAgain" })}</p>
 			) : !filteredProducts.length ? (
