@@ -20,6 +20,8 @@ import { useIntl } from "react-intl";
 import FlagRu from "../../../icons/FlagRu/FlagRu.jsx";
 import FlagEn from "../../../icons/FlagEn/FlagEn.jsx";
 import { useAuth } from "../../../context/AuthContext/AuthContext.jsx";
+import { useTheme } from "../../../context/ThemeContext/ThemeContext.jsx";
+import ThemeSwitch from "../../ThemeSwitch/ThemeSwitch.jsx";
 import styles from "./Header.module.scss";
 
 const iconStyle = {
@@ -42,6 +44,7 @@ const Header = () => {
 	const isModalOpen = useSelector(selectIsCartOpen);
 	const { locale, setLocale } = useLanguage();
 	const { user, logout } = useAuth();
+	const { theme, setTheme } = useTheme();
 	const [isOverlayOpen, setIsOverlayOpen] = useState(false);
 
 	const handleOpenOverlay = () => {
@@ -70,30 +73,27 @@ const Header = () => {
 				<div className={styles.menu}>
 					<ul>
 						{user && user.isAuth ? (
-							<>
-								{user.isAdmin && (
-									<li>
-										<Link href="/admin" className={styles.headerButton}>
-											{intl.formatMessage({ id: "admin_panel" })}
-										</Link>
-									</li>
-								)}
-								<li>
-									<span className={styles.userNameBadge}>
+							<li className={styles.auth}>
+								<span className={styles.userBlock}>
+									<Link
+										href={user.isAdmin ? "/admin" : "#"}
+										className={styles.userLink}
+									>
 										{user.userName}
-									</span>
-								</li>
-								<li>
+									</Link>
+									<span className={styles.userSep}> | </span>
 									<button
-										className={styles.headerButton}
+										type="button"
+										className={styles.exitBtn}
 										onClick={logout}
+										title="Exit"
 									>
 										{intl.formatMessage({ id: "logout" })}
 									</button>
-								</li>
-							</>
+								</span>
+							</li>
 						) : (
-							<li>
+							<li className={styles.auth}>
 								<button
 									className={styles.headerButton}
 									onClick={handleOpenOverlay}
@@ -121,6 +121,13 @@ const Header = () => {
 						>
 							<FlagRu />
 						</li>
+						<li className={styles.themeItem}>
+							<ThemeSwitch
+								checked={theme === "dark"}
+								onChange={(isDark) => setTheme(isDark ? "dark" : "light")}
+								aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+							/>
+						</li>
 					</ul>
 				</div>
 				<div className={styles.contact}>
@@ -141,13 +148,14 @@ const Header = () => {
 					<div className={styles.cart}>
 						<button
 							className={styles.cartButton}
+							data-cart-target="true"
 							onClick={() => dispatch(toggleCartModal())}
 						>
 							<CartIcon {...cartStyle} />
 							<p>{intl.formatMessage({ id: "cart" })}</p>
 							<p
-								className={styles.amountBadge}
-								data-amount
+								className={cartItems.length > 0 ? styles.amountItems : styles.amountItemsNull}
+								data-amount="true"
 							>
 								{cartItems.length}
 							</p>

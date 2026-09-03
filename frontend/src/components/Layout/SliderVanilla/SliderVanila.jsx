@@ -2,9 +2,21 @@
 
 import React, { useEffect, useState } from "react";
 import imageData from "../../../data/package_slider.json";
-import ArrowLeft from '../../../icons/ArrowLeft/ArrowLeft.jsx';
-import ArrowRight from '../../../icons/ArrowRight/ArrowRight.jsx';
 import styles from "./SliderVanilla.module.scss";
+
+const ArrowLeftIcon = () => (
+    <svg width="50" height="50" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="35" cy="35" r="35" fill="#46BB22"/>
+        <path d="M41 25L29 34.8824L41 45" stroke="white" strokeWidth="2"/>
+    </svg>
+);
+
+const ArrowRightIcon = () => (
+    <svg width="50" height="50" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="28" cy="28" r="28" transform="rotate(-180 28 28)" fill="#46BB22"/>
+        <path d="M23.2 36L32.8 28.0941L23.2 20" stroke="white" strokeWidth="2"/>
+    </svg>
+);
 
 const SliderVanilla = () => {
     const [slideIndex, setSlideIndex] = useState(0);
@@ -42,10 +54,10 @@ const SliderVanilla = () => {
     return (
       <section className={styles.slider}>
           <div className={styles.arrowLeft} onClick={prevSlide}>
-              <ArrowLeft/>
+              <ArrowLeftIcon/>
           </div>
           <div className={styles.arrowRight} onClick={nextSlide}>
-              <ArrowRight/>
+              <ArrowRightIcon/>
           </div>
           <ul className={styles.items}>
               {imageData.map((slide, index) => (

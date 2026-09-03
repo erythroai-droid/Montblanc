@@ -119,13 +119,28 @@ const SignInContainer = () => {
 				</p>
 
 				<div className={styles.oauthSection}>
-					<p>Or sign in with</p>
 					<div className={styles.oauthButtons}>
-						<a href={`${API_BASE_URL}/oauth2/authorization/google`}>
-							Google
+						<a
+							href="/oauth2/authorization/google"
+							className={styles.oauthBtn}
+							aria-label="Sign in with Google"
+						>
+							<img
+								src="/images/signin-assets/Web (mobile + desktop)/svg/neutral/web_neutral_rd_SI.svg"
+								alt="Sign in with Google"
+								className={styles.oauthImg}
+							/>
 						</a>
-						<a href={`${API_BASE_URL}/oauth2/authorization/twitter`}>
-							X (Twitter)
+						<a
+							href="/oauth2/authorization/twitter"
+							className={`${styles.oauthBtn} ${styles.oauthXBtn}`}
+							aria-label="Sign in with X"
+						>
+							<img
+								src="/images/x-logo/web_neutral_X.png"
+								alt="Sign in with X"
+								className={`${styles.oauthImg} ${styles.oauthXImg}`}
+							/>
 						</a>
 					</div>
 				</div>

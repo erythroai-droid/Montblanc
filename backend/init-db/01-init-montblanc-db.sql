@@ -40,8 +40,8 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `user` (`id`, `login`, `email`, `password`, `name`, `category`) VALUES
-(1, 'admin', 'admin@montblanc.com', '12345', 'Administrator', 'admin'),
-(2, 'webmechanik@gmail.com', 'webmechanik@gmail.com', '12345', 'Vadim', 'admin');
+(1, 'admin', 'webmechanik@gmail.com', '8w253fpR', 'admin', 'admin'),
+(2, 'Tester1', 'kovalenko.vadym.isr@gmail.com', '123456', 'Tester1', 'user');
 
 -- 3. Table: product
 DROP TABLE IF EXISTS `product`;
