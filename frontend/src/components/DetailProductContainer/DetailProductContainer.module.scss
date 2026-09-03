@@ -2,7 +2,10 @@
 @use '../../styles/mixins' as *;
 
 .section {
-  @include block-set(100%, auto, 40px 0 60px 0, 0 auto, #F6F6F6);
+  width: 100%;
+  padding: 40px 0 60px 0;
+  margin: 0 auto;
+  background: var(--app-bg);
   display: flex;
   justify-content: center;
   min-height: 500px;
@@ -18,7 +21,7 @@
   gap: 40px;
 
   p {
-    @include font-face($font-size-regular * 1px, 300, var(--color-dark));
+    @include font-face($font-size-regular * 1px, 300, var(--app-text));
   }
 }
 
@@ -26,10 +29,10 @@
   display: flex;
   justify-content: flex-start;
   gap: 40px;
-  background: var(--color-white);
+  background: var(--app-surface);
   padding: 30px;
   border-radius: 8px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--app-border);
 
   @media (max-width: $width-mobile-until) {
     flex-direction: column;
@@ -149,4 +152,9 @@
 .statusContainer {
   padding: 60px 20px;
   text-align: center;
+  color: var(--app-text);
+
+  h2, p {
+    color: var(--app-text);
+  }
 }

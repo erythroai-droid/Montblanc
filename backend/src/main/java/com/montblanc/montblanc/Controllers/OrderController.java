@@ -99,7 +99,9 @@ public class OrderController {
                 productIndex++;
             }
 
-            String logoImg = "<img src='cid:" + LOGO_CID + "' width='120' height='39' alt='Mont Blanc' style='display:block;vertical-align:middle;'/>";
+            String logoImg = (logoBytes != null && logoBytes.length > 0)
+                    ? "<img src='cid:" + LOGO_CID + "' width='120' height='40' alt='Mont Blanc' style='display:block;width:120px;max-width:120px;height:auto;border:0;outline:none;'/>"
+                    : "<span style='color:#ffffff;font-size:18px;font-weight:bold;letter-spacing:1px;font-family:Arial,Helvetica,sans-serif;'>MONT BLANC</span>";
 
             String emailBody =
                     "<!DOCTYPE html>" +
@@ -117,10 +119,10 @@ public class OrderController {
                             "<table role='presentation' cellpadding='0' cellspacing='0' width='600' style='width:600px;max-width:100%;background-color:#ffffff;border-radius:4px;overflow:hidden;font-family:Arial,Helvetica,sans-serif;'>" +
                             "<tr>" +
                             "<td style='background-color:#46BB22;padding:16px 24px;'>" +
-                            "<table role='presentation' cellpadding='0' cellspacing='0' width='100%'>" +
+                            "<table role='presentation' cellpadding='0' cellspacing='0' width='100%' style='width:100%;border-collapse:collapse;'>" +
                             "<tr>" +
-                            "<td align='left' style='vertical-align:middle;'>" + logoImg + "</td>" +
-                            "<td align='right' style='color:#ffffff;font-size:18px;font-weight:bold;vertical-align:middle;'>Order № " + orders.getId() + "</td>" +
+                            "<td align='left' valign='middle' style='width:50%;text-align:left;vertical-align:middle;padding:0;'>" + logoImg + "</td>" +
+                            "<td align='right' valign='middle' style='width:50%;text-align:right;vertical-align:middle;padding:0;color:#ffffff;font-size:16px;font-weight:bold;white-space:nowrap;font-family:Arial,Helvetica,sans-serif;'>Order № " + orders.getId() + "</td>" +
                             "</tr>" +
                             "</table>" +
                             "</td>" +
