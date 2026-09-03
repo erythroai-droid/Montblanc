@@ -36,10 +36,16 @@ export default function AdminLayout({ children }) {
         }
 
         // If not authenticated as admin
+        if (typeof window !== "undefined") {
+          localStorage.removeItem("user");
+        }
         router.replace("/sign-in");
       } catch (err) {
         if (!isMounted) return;
         console.warn("Admin access check failed:", err);
+        if (typeof window !== "undefined") {
+          localStorage.removeItem("user");
+        }
         router.replace("/sign-in");
       }
     }

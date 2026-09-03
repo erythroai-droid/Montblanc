@@ -43,6 +43,10 @@ export const AuthProvider = ({ children }) => {
       }
     } catch (err) {
       console.warn("Session check failed:", err.message);
+      setUser(null);
+      if (typeof window !== "undefined") {
+        localStorage.removeItem("user");
+      }
       return null;
     } finally {
       setLoading(false);

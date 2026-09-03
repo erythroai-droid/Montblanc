@@ -12,7 +12,7 @@ const SignInContainer = () => {
 	const intl = useIntl();
 	const router = useRouter();
 	const searchParams = useSearchParams();
-	const { user, login } = useAuth();
+	const { user, login, loading: authLoading } = useAuth();
 
 	const [formData, setFormData] = useState({
 		login: "",
@@ -32,14 +32,14 @@ const SignInContainer = () => {
 
 	// If already authenticated, redirect
 	useEffect(() => {
-		if (user && user.isAuth) {
+		if (!authLoading && user && user.isAuth) {
 			if (user.isAdmin) {
 				router.push("/admin");
 			} else {
 				router.push("/");
 			}
 		}
-	}, [user, router]);
+	}, [user, authLoading, router]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
