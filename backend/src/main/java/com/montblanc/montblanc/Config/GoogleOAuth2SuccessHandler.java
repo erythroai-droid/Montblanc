@@ -102,11 +102,31 @@ public class GoogleOAuth2SuccessHandler implements AuthenticationSuccessHandler 
             session.setAttribute("user", user);
 
             String redirectTarget = "admin".equals(user.getCategory()) ? "/admin" : "/";
-            String baseUrl = (appBaseUrl != null && !appBaseUrl.isBlank()) ? appBaseUrl.replaceAll("/$", "") : "";
+            String originHost = request.getHeader("X-Forwarded-Host");
+            String originProto = request.getHeader("X-Forwarded-Proto");
+            String baseUrl;
+            if (originHost != null && !originHost.isBlank()) {
+                String proto = (originProto != null && !originProto.isBlank()) ? originProto : "https";
+                baseUrl = proto + "://" + originHost;
+            } else if (appBaseUrl != null && !appBaseUrl.isBlank()) {
+                baseUrl = appBaseUrl.replaceAll("/$", "");
+            } else {
+                baseUrl = "https://montblanc-frontend.vercel.app";
+            }
             response.sendRedirect(baseUrl + redirectTarget);
         } catch (Exception e) {
             logger.error("OAuth2 authentication success handler failed", e);
-            String baseUrl = (appBaseUrl != null && !appBaseUrl.isBlank()) ? appBaseUrl.replaceAll("/$", "") : "";
+            String originHost = request.getHeader("X-Forwarded-Host");
+            String originProto = request.getHeader("X-Forwarded-Proto");
+            String baseUrl;
+            if (originHost != null && !originHost.isBlank()) {
+                String proto = (originProto != null && !originProto.isBlank()) ? originProto : "https";
+                baseUrl = proto + "://" + originHost;
+            } else if (appBaseUrl != null && !appBaseUrl.isBlank()) {
+                baseUrl = appBaseUrl.replaceAll("/$", "");
+            } else {
+                baseUrl = "https://montblanc-frontend.vercel.app";
+            }
             response.sendRedirect(baseUrl + "/sign-in?error=oauth");
         }
     }
