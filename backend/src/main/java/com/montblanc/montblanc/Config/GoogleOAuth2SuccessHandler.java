@@ -105,10 +105,10 @@ public class GoogleOAuth2SuccessHandler implements AuthenticationSuccessHandler 
             String originHost = request.getHeader("X-Forwarded-Host");
             String originProto = request.getHeader("X-Forwarded-Proto");
             String baseUrl;
-            if (originHost != null && !originHost.isBlank()) {
+            if (originHost != null && !originHost.isBlank() && !originHost.contains("46.202.155.56") && !originHost.contains("pizza-na-dom")) {
                 String proto = (originProto != null && !originProto.isBlank()) ? originProto : "https";
                 baseUrl = proto + "://" + originHost;
-            } else if (appBaseUrl != null && !appBaseUrl.isBlank()) {
+            } else if (appBaseUrl != null && !appBaseUrl.isBlank() && !appBaseUrl.contains("pizza-na-dom")) {
                 baseUrl = appBaseUrl.replaceAll("/$", "");
             } else {
                 baseUrl = "https://montblanc-frontend.vercel.app";
@@ -119,10 +119,10 @@ public class GoogleOAuth2SuccessHandler implements AuthenticationSuccessHandler 
             String originHost = request.getHeader("X-Forwarded-Host");
             String originProto = request.getHeader("X-Forwarded-Proto");
             String baseUrl;
-            if (originHost != null && !originHost.isBlank()) {
+            if (originHost != null && !originHost.isBlank() && !originHost.contains("46.202.155.56") && !originHost.contains("pizza-na-dom")) {
                 String proto = (originProto != null && !originProto.isBlank()) ? originProto : "https";
                 baseUrl = proto + "://" + originHost;
-            } else if (appBaseUrl != null && !appBaseUrl.isBlank()) {
+            } else if (appBaseUrl != null && !appBaseUrl.isBlank() && !appBaseUrl.contains("pizza-na-dom")) {
                 baseUrl = appBaseUrl.replaceAll("/$", "");
             } else {
                 baseUrl = "https://montblanc-frontend.vercel.app";

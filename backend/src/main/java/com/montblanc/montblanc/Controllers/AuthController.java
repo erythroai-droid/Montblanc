@@ -27,10 +27,11 @@ public class AuthController {
     public ResponseEntity<UserSessionDTO> me(HttpSession session) {
         User user = (User) session.getAttribute("user");
         if (user == null) {
-            return ResponseEntity.ok(new UserSessionDTO(null, null));
+            return ResponseEntity.ok(new UserSessionDTO(null, null, null, false, false));
         }
         String name = user.getName() != null && !user.getName().isBlank() ? user.getName() : user.getLogin();
-        return ResponseEntity.ok(new UserSessionDTO(name, user.getLogin()));
+        boolean isAdmin = "admin".equalsIgnoreCase(user.getCategory());
+        return ResponseEntity.ok(new UserSessionDTO(name, user.getLogin(), user.getEmail(), isAdmin, true));
     }
 
     @PostMapping("/logout")
