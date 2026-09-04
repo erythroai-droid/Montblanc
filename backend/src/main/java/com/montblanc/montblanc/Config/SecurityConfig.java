@@ -97,6 +97,18 @@ public class SecurityConfig {
                                 .userService(oauth2UserService())
                         )
                         .successHandler(googleOAuth2SuccessHandler)
+                        .failureHandler((request, response, exception) -> {
+                            String originHost = request.getHeader("X-Forwarded-Host");
+                            String originProto = request.getHeader("X-Forwarded-Proto");
+                            String baseUrl;
+                            if (originHost != null && !originHost.isBlank() && !originHost.contains("46.202.155.56") && !originHost.contains("pizza-na-dom")) {
+                                String proto = (originProto != null && !originProto.isBlank()) ? originProto : "https";
+                                baseUrl = proto + "://" + originHost;
+                            } else {
+                                baseUrl = "https://montblanc-frontend.vercel.app";
+                            }
+                            response.sendRedirect(baseUrl + "/sign-in?error=oauth_cancelled");
+                        })
                 )
                 .csrf(csrf -> csrf.ignoringRequestMatchers(
                         "/api/**", "/login", "/order", "/deleteOrder/**", "/products/**", "/categories/**", "/addProduct/**", "/addCategory/**"

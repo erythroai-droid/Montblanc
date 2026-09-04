@@ -25,6 +25,8 @@ const SignInContainer = () => {
 		const errorParam = searchParams.get("error");
 		if (errorParam === "invalid_credentials") {
 			setError(intl.formatMessage({ id: "login_error" }));
+		} else if (errorParam === "oauth_cancelled") {
+			setError(intl.locale === "ru" ? "Вход был отменён." : "Sign in was cancelled.");
 		} else if (errorParam === "oauth") {
 			setError("OAuth authentication failed. Please try again.");
 		}
