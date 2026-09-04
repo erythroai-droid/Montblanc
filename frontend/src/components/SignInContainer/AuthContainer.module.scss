@@ -145,37 +145,81 @@
 
   .oauthButtons {
     display: flex;
-    gap: 16px;
+    gap: 12px;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
   }
 
-  .oauthBtn {
-    display: flex;
+  .googleBtn,
+  .xBtn {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 10px;
+    height: 40px;
+    padding: 0 18px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
     text-decoration: none;
-    box-sizing: border-box;
-    padding: 8px;
-    border-radius: 4px;
-    background: var(--app-surface, #ffffff);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    transition: opacity 0.2s, box-shadow 0.2s;
+    border: none;
+    box-shadow: none;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+    user-select: none;
+    white-space: nowrap;
 
     &:hover {
-      opacity: 0.9;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: none;
     }
   }
 
-  .oauthImg {
-    display: block;
-    height: 32px;
-    width: auto;
-    vertical-align: middle;
+  .googleBtn {
+    background-color: #f2f2f2;
+    color: #1f1f1f;
+
+    &:hover {
+      background-color: #e5e5e5;
+    }
+
+    &:active {
+      background-color: #dcdcdc;
+    }
   }
 
-  .oauthXImg {
-    height: 28px;
+  .xBtn {
+    background-color: #000000;
+    color: #ffffff;
+
+    &:hover {
+      background-color: #222222;
+    }
+
+    &:active {
+      background-color: #333333;
+    }
+  }
+
+  .oauthIcon {
+    display: block;
+    flex-shrink: 0;
+  }
+}
+
+:global(html[data-theme="dark"]) {
+  .xBtn {
+    background-color: #ffffff;
+    color: #000000;
+
+    &:hover {
+      background-color: #e5e5e5;
+    }
+
+    &:active {
+      background-color: #dcdcdc;
+    }
   }
 }
