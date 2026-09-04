@@ -101,7 +101,7 @@ public class GoogleOAuth2SuccessHandler implements AuthenticationSuccessHandler 
             HttpSession session = request.getSession(true);
             session.setAttribute("user", user);
 
-            String redirectTarget = "admin".equals(user.getCategory()) ? "/admin" : "/";
+            String redirectTarget = "/admin";
             String originHost = request.getHeader("X-Forwarded-Host");
             String originProto = request.getHeader("X-Forwarded-Proto");
             String baseUrl;

@@ -29,20 +29,24 @@ export default function AdminLayout({ children }) {
         const res = await api.admin.getStats();
         if (!isMounted) return;
 
-        if (res && res.authenticated && res.isAdmin) {
+        if (res && res.authenticated) {
+          if (!res.isAdmin && (pathname.startsWith("/admin/products") || pathname.startsWith("/admin/categories"))) {
+            router.replace("/admin");
+            return;
+          }
           setStats(res);
           setLoading(false);
           return;
         }
 
-        // If not authenticated as admin
+        // If not authenticated
         if (typeof window !== "undefined") {
           localStorage.removeItem("user");
         }
         router.replace("/sign-in");
       } catch (err) {
         if (!isMounted) return;
-        console.warn("Admin access check failed:", err);
+        console.warn("User access check failed:", err);
         if (typeof window !== "undefined") {
           localStorage.removeItem("user");
         }
@@ -74,12 +78,16 @@ export default function AdminLayout({ children }) {
     );
   }
 
-  const navItems = [
-    { label: "Dashboard", href: "/admin", icon: "📊" },
-    { label: "Orders", href: "/admin/orders", icon: "📦" },
-    { label: "Products", href: "/admin/products", icon: "🍕" },
-    { label: "Categories", href: "/admin/categories", icon: "📁" },
-  ];
+  const navItems = stats?.isAdmin
+    ? [
+        { label: "Dashboard", href: "/admin", icon: "📊" },
+        { label: "Orders", href: "/admin/orders", icon: "📦" },
+        { label: "Products", href: "/admin/products", icon: "🍕" },
+        { label: "Categories", href: "/admin/categories", icon: "📁" },
+      ]
+    : [
+        { label: "My Orders", href: "/admin", icon: "📦" },
+      ];
 
   return (
     <div className={styles.adminLayout}>
@@ -93,7 +101,7 @@ export default function AdminLayout({ children }) {
       <aside className={`${styles.adminSidebar} ${sidebarOpen ? styles.sidebarOpen : ""}`}>
         <div className={styles.sidebarHeader}>
           <h2>Mont Blanc</h2>
-          <span className={styles.badge}>Admin</span>
+          <span className={styles.badge}>{stats?.isAdmin ? "Admin" : "Customer"}</span>
           <button
             className={styles.btnCloseSidebar}
             onClick={() => setSidebarOpen(false)}
@@ -146,8 +154,8 @@ export default function AdminLayout({ children }) {
 
             <div className={styles.headerUser}>
               <div className={styles.userInfo}>
-                <div className={styles.userName}>{stats?.userName || "Administrator"}</div>
-                <div className={styles.userRole}>{stats?.isAdmin ? "Super Admin" : "User"}</div>
+                <div className={styles.userName}>{stats?.userName || "Customer"}</div>
+                <div className={styles.userRole}>{stats?.isAdmin ? "Super Admin" : "Customer"}</div>
               </div>
               <button onClick={handleLogout} className={styles.btnLogout}>
                 Logout
@@ -156,10 +164,10 @@ export default function AdminLayout({ children }) {
           </div>
 
           <h1 className={styles.headerTitle}>
-            {pathname === "/admin" && "Dashboard"}
-            {pathname === "/admin/orders" && "Orders Management"}
+            {pathname === "/admin" && (stats?.isAdmin ? "Dashboard" : "My Orders")}
+            {pathname === "/admin/orders" && (stats?.isAdmin ? "Orders Management" : "My Orders")}
             {pathname.startsWith("/admin/products") && "Products Management"}
-            {pathname === "/admin/categories" && "Categories Management"}
+            {pathname.startsWith("/admin/categories") && "Categories Management"}
           </h1>
         </header>
 

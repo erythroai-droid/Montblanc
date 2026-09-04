@@ -97,7 +97,7 @@ const Header = () => {
 							<li className={styles.auth}>
 								<span className={styles.userBlock}>
 									<Link
-										href={user.isAdmin ? "/admin" : "#"}
+										href="/admin"
 										className={styles.userLink}
 									>
 										{user.userName}

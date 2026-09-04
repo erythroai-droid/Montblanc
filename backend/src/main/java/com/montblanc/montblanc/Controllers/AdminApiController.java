@@ -68,7 +68,13 @@ public class AdminApiController {
             stats.put("productCount", productRepository.count());
             stats.put("categoryCount", categoryRepository.count());
         } else {
-            stats.put("userOrderCount", ordersRepository.countByUserId(currentUser.getId()));
+            long userOrdersCount = (currentUser.getEmail() != null && !currentUser.getEmail().isBlank())
+                    ? ordersRepository.countByUserIdOrEmail(currentUser.getId(), currentUser.getEmail())
+                    : ordersRepository.countByUserId(currentUser.getId());
+            stats.put("orderCount", userOrdersCount);
+            stats.put("userOrderCount", userOrdersCount);
+            stats.put("productCount", 0);
+            stats.put("categoryCount", 0);
         }
 
         return ResponseEntity.ok(stats);
@@ -85,7 +91,12 @@ public class AdminApiController {
             List<Orders> orders = ordersRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
             return ResponseEntity.ok(orders);
         } else {
-            List<Orders> userOrders = ordersRepository.findByUserId(currentUser.getId());
+            List<Orders> userOrders;
+            if (currentUser.getEmail() != null && !currentUser.getEmail().isBlank()) {
+                userOrders = ordersRepository.findByUserIdOrEmailOrderByIdDesc(currentUser.getId(), currentUser.getEmail());
+            } else {
+                userOrders = ordersRepository.findByUserIdOrderByIdDesc(currentUser.getId());
+            }
             return ResponseEntity.ok(userOrders);
         }
     }

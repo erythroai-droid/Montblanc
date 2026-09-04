@@ -44,11 +44,7 @@ public class LoginController {
         if (user != null && user.getPassword().equals(password)) {
             logger.info("User '{}' successfully authenticated", login);
             session.setAttribute("user", user);
-            if ("admin".equals(user.getCategory())) {
-                response.sendRedirect(baseUrl + "/admin");
-            } else {
-                response.sendRedirect(baseUrl + "/");
-            }
+            response.sendRedirect(baseUrl + "/admin");
         } else {
             logger.warn("Failed login attempt for user '{}'", login);
             response.sendRedirect(baseUrl + "/sign-in?error=invalid_credentials");

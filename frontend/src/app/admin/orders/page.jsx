@@ -1,10 +1,13 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { useAuth } from "../../../context/AuthContext/AuthContext.jsx";
 import api from "../../../api/api.js";
 import styles from "../admin.module.scss";
 
 export default function AdminOrdersPage() {
+  const { user } = useAuth();
+  const isAdmin = !!user?.isAdmin;
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
@@ -69,7 +72,7 @@ export default function AdminOrdersPage() {
 
       <div className={styles.adminCard}>
         <div className={styles.cardHeader}>
-          <h3>Orders ({filteredOrders.length})</h3>
+          <h3>{isAdmin ? "Orders" : "My Orders"} ({filteredOrders.length})</h3>
           <input
             type="text"
             placeholder="Search by ID, customer name, email, or phone..."
@@ -95,7 +98,7 @@ export default function AdminOrdersPage() {
                   <th>Delivery & Payment</th>
                   <th>Total</th>
                   <th>Items</th>
-                  <th>Actions</th>
+                  {isAdmin && <th>Actions</th>}
                 </tr>
               </thead>
               <tbody>
@@ -143,20 +146,22 @@ export default function AdminOrdersPage() {
                             {order.products?.length || 0} items {isExpanded ? "▲" : "▼"}
                           </button>
                         </td>
-                        <td>
-                          <button
-                            onClick={() => handleDelete(order.id)}
-                            disabled={deletingId === order.id}
-                            className={styles.btnDelete}
-                          >
-                            {deletingId === order.id ? "..." : "Delete"}
-                          </button>
-                        </td>
+                        {isAdmin && (
+                          <td>
+                            <button
+                              onClick={() => handleDelete(order.id)}
+                              disabled={deletingId === order.id}
+                              className={styles.btnDelete}
+                            >
+                              {deletingId === order.id ? "..." : "Delete"}
+                            </button>
+                          </td>
+                        )}
                       </tr>
 
                       {isExpanded && order.products && order.products.length > 0 && (
                         <tr>
-                          <td colSpan={7} style={{ background: "#f8fafc", padding: "16px 24px" }}>
+                          <td colSpan={isAdmin ? 7 : 6} style={{ background: "#f8fafc", padding: "16px 24px" }}>
                             <h4 style={{ margin: "0 0 12px 0", fontSize: "14px", color: "#334155" }}>
                               Order Items for #{order.id}:
                             </h4>

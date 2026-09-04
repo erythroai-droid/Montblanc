@@ -45,9 +45,7 @@ const ModalOverlay = ({ isOverlayOpen, onCloseOverlay }) => {
 			const result = await login(formData);
 			if (result.success) {
 				onCloseOverlay();
-				if (result.user?.isAdmin) {
-					router.push("/admin");
-				}
+				router.push("/admin");
 			} else {
 				setError(result.message || intl.formatMessage({ id: "login_error" }));
 			}

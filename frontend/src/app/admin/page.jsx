@@ -42,50 +42,69 @@ export default function AdminDashboardPage() {
           <div className={`${styles.statIcon} ${styles.green}`}>📦</div>
           <div className={styles.statInfo}>
             <h3>{stats.orderCount || 0}</h3>
-            <p>Total Orders</p>
+            <p>{stats.isAdmin ? "Total Orders" : "My Orders"}</p>
           </div>
         </div>
 
-        <div className={styles.statCard}>
-          <div className={`${styles.statIcon} ${styles.blue}`}>🍕</div>
-          <div className={styles.statInfo}>
-            <h3>{stats.productCount || 0}</h3>
-            <p>Active Products</p>
-          </div>
-        </div>
+        {stats.isAdmin && (
+          <>
+            <div className={styles.statCard}>
+              <div className={`${styles.statIcon} ${styles.blue}`}>🍕</div>
+              <div className={styles.statInfo}>
+                <h3>{stats.productCount || 0}</h3>
+                <p>Active Products</p>
+              </div>
+            </div>
 
-        <div className={styles.statCard}>
-          <div className={`${styles.statIcon} ${styles.purple}`}>📁</div>
-          <div className={styles.statInfo}>
-            <h3>{stats.categoryCount || 0}</h3>
-            <p>Categories</p>
-          </div>
-        </div>
+            <div className={styles.statCard}>
+              <div className={`${styles.statIcon} ${styles.purple}`}>📁</div>
+              <div className={styles.statInfo}>
+                <h3>{stats.categoryCount || 0}</h3>
+                <p>Categories</p>
+              </div>
+            </div>
+          </>
+        )}
       </div>
 
       <div className={styles.adminCard}>
         <div className={styles.cardHeader}>
-          <h3>Quick Actions</h3>
+          <h3>{stats.isAdmin ? "Quick Actions" : "Customer Actions"}</h3>
         </div>
         <div className={styles.cardBody} style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-          <Link href="/admin/products/new" className={styles.btnPrimary}>
-            <span>+</span> Add New Product
-          </Link>
-          <Link href="/admin/orders" className={styles.btnPrimary} style={{ backgroundColor: "#2563eb" }}>
-            <span>📋</span> View All Orders
-          </Link>
-          <Link href="/admin/categories" className={styles.btnPrimary} style={{ backgroundColor: "#9333ea" }}>
-            <span>📁</span> Manage Categories
-          </Link>
+          {stats.isAdmin ? (
+            <>
+              <Link href="/admin/products/new" className={styles.btnPrimary}>
+                <span>+</span> Add New Product
+              </Link>
+              <Link href="/admin/orders" className={styles.btnPrimary} style={{ backgroundColor: "#2563eb" }}>
+                <span>📋</span> View All Orders
+              </Link>
+              <Link href="/admin/categories" className={styles.btnPrimary} style={{ backgroundColor: "#9333ea" }}>
+                <span>📁</span> Manage Categories
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link href="/" className={styles.btnPrimary}>
+                <span>🛒</span> Go to Store
+              </Link>
+              <Link href="/admin/orders" className={styles.btnPrimary} style={{ backgroundColor: "#2563eb" }}>
+                <span>📋</span> My Orders History
+              </Link>
+            </>
+          )}
         </div>
       </div>
 
       <div className={styles.adminCard}>
         <div className={styles.cardHeader}>
-          <h3>Recent Orders</h3>
-          <Link href="/admin/orders" style={{ fontSize: "13px", color: "#46bb22", textDecoration: "none", fontWeight: 600 }}>
-            View All ({stats.orderCount || 0}) →
-          </Link>
+          <h3>{stats.isAdmin ? "Recent Orders" : "My Recent Orders"}</h3>
+          {stats.isAdmin && (
+            <Link href="/admin/orders" style={{ fontSize: "13px", color: "#46bb22", textDecoration: "none", fontWeight: 600 }}>
+              View All ({stats.orderCount || 0}) →
+            </Link>
+          )}
         </div>
         <div className={styles.cardBody} style={{ padding: 0 }}>
           {recentOrders.length === 0 ? (
