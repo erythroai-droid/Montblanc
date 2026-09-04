@@ -35,13 +35,16 @@ const SignInContainer = () => {
 	// If already authenticated, redirect
 	useEffect(() => {
 		if (!authLoading && user && user.isAuth) {
-			if (user.isAdmin) {
+			const redirectTarget = searchParams.get("redirect");
+			if (redirectTarget) {
+				router.push(redirectTarget);
+			} else if (user.isAdmin) {
 				router.push("/admin");
 			} else {
 				router.push("/");
 			}
 		}
-	}, [user, authLoading, router]);
+	}, [user, authLoading, router, searchParams]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -56,7 +59,10 @@ const SignInContainer = () => {
 		try {
 			const res = await login(formData);
 			if (res.success) {
-				if (res.user?.isAdmin) {
+				const redirectTarget = searchParams.get("redirect");
+				if (redirectTarget) {
+					router.push(redirectTarget);
+				} else if (res.user?.isAdmin) {
 					router.push("/admin");
 				} else {
 					router.push("/");
@@ -115,7 +121,7 @@ const SignInContainer = () => {
 
 				<p className={styles.footerLink}>
 					{intl.formatMessage({ id: "no_account" })}{" "}
-					<Link href="/sign-up">
+					<Link href={searchParams.get("redirect") ? `/sign-up?redirect=${encodeURIComponent(searchParams.get("redirect"))}` : "/sign-up"}>
 						{intl.formatMessage({ id: "sign_up" })}
 					</Link>
 				</p>

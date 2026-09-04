@@ -102,6 +102,12 @@
   }
 }
 
+.auth {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .headerButton {
   font-family: var(--font-family-roboto);
   background: none;
@@ -113,6 +119,7 @@
   padding: #{$padding-button};
   @include font-face($font-size-regular * 1px, 400, var(--color-white));
   text-transform: uppercase;
+  text-decoration: none;
   cursor: pointer;
   transition: background 0.3s ease, color 0.3s ease;
 

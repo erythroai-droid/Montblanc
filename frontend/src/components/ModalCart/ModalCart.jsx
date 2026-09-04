@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useDispatch } from "react-redux";
 import { removeFromCart, closeCartModal } from "../../redux/slices/cartSlice/cartSlice.js";
 import { useIntl } from "react-intl";
+import { useAuth } from "../../context/AuthContext/AuthContext.jsx";
 import styles from "./ModalCart.module.scss";
 
 const closeStyle = {
@@ -18,11 +19,17 @@ const ModalCart = ({ cartItems }) => {
 	const intl = useIntl();
 	const dispatch = useDispatch();
 	const router = useRouter();
+	const { user } = useAuth();
+	const isAuth = Boolean(user && user.isAuth);
 	const total = cartItems.reduce((sum, item) => sum + item.price * (item.number || 1), 0);
 
-	const handleGoToOrder = () => {
+	const handleAction = () => {
 		dispatch(closeCartModal());
-		router.push('/order');
+		if (isAuth) {
+			router.push('/order');
+		} else {
+			router.push('/sign-in?redirect=/order');
+		}
 	};
 
 	return (
@@ -65,9 +72,9 @@ const ModalCart = ({ cartItems }) => {
 			<button
 				className={`${styles.dropCartButton} ${cartItems.length === 0 ? styles.hide : ''}`}
 				data-cart-total
-				onClick={handleGoToOrder}
+				onClick={handleAction}
 			>
-				{intl.formatMessage({ id: "order" })}
+				{isAuth ? intl.formatMessage({ id: "order" }) : intl.formatMessage({ id: "sign_in" })}
 			</button>
 		</div>
 	);

@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import SignUpContainer from "../../components/SignUpContainer/SignUpContainer.jsx";
 
 export const metadata = {
@@ -6,5 +7,9 @@ export const metadata = {
 };
 
 export default function SignUpPage() {
-  return <SignUpContainer />;
+  return (
+    <Suspense fallback={<div style={{ minHeight: "500px", display: "flex", justifyContent: "center", alignItems: "center" }}>Loading...</div>}>
+      <SignUpContainer />
+    </Suspense>
+  );
 }
