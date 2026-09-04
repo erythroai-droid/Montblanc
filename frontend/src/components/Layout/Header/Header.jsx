@@ -121,12 +121,6 @@ const Header = () => {
 								>
 									{intl.formatMessage({ id: "sign_in" })}
 								</button>
-								<Link
-									href="/sign-up"
-									className={styles.headerButton}
-								>
-									{intl.formatMessage({ id: "sign_up" })}
-								</Link>
 								{isOverlayOpen && (
 									<ModalOverlay
 										isOverlayOpen={isOverlayOpen}
